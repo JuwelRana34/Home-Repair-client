@@ -9,6 +9,7 @@ import {
   onAuthStateChanged, 
   deleteUser
 } from "firebase/auth";
+
 const UserContext = createContext();
 
 // eslint-disable-next-line react/prop-types
@@ -31,6 +32,7 @@ export const AuthProvider = ({ children }) => {
 
   const LogOut = () => {
     return signOut(auth);
+     
   };
 
   const DeleteUser = (user)=>{
@@ -62,6 +64,7 @@ export const AuthProvider = ({ children }) => {
     GoogleLogin,
     login,
     LogOut,
+    setUser,
     user,
     isLoading,
     DeleteUser

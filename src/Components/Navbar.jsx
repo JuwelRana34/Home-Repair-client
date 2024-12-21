@@ -1,30 +1,63 @@
-import { Link, NavLink } from "react-router"
+import { Link, NavLink, useLocation, useNavigate } from "react-router"
 import logo from "../../public/mechanic.gif"
+import { useContext, useEffect} from "react"
+import UserContext from "../Context/AuthContext"
+import { Button, toast } from "keep-react"
 
 function Navbar() {
+   const {pathname}= useLocation()
+   const {user ,LogOut ,setUser} = useContext(UserContext)
+
+
+const navigate = useNavigate();
+   const handleLogout = () => {
+      LogOut()
+      .then(() => {
+            
+            setUser(null);
+            navigate("/");
+            toast.warning("Logged Out Successfully");
+          })
+          .catch((err) => {
+            toast.error(err);
+          });
+   }
+ 
+   useEffect(() => {
+     const DynamicTitle = {
+       "/": "Home | Home repair",
+       "/LoginPage": "Login | Home repair",
+       "/services": "services | Home repair",
+     };
+     document.title = DynamicTitle[pathname] || "Home repair";
+   }, [pathname]);
+
     const navitems = <>
      <NavLink to={'/'}>
      <li><a>Home</a></li>
      </NavLink>
      <NavLink to={'/services'}>
-     <li><a>Services</a></li>
+     <li ><a>Services</a></li>
      </NavLink>
-     <NavLink >
+    
 
-     <div className="dropdown dropdown-end">
-        <div tabIndex={0} role="button" className=" p-2 flex items-center rounded-btn">Dashboard</div>
+     {user && <div className="dropdown dropdown-end">
+        <div tabIndex={0} role="button" className={` p-2 flex items-center rounded-btn `}>Dashboard</div>
         <ul
           tabIndex={0}
           className="menu dropdown-content text-black bg-base-100 border rounded-lg mt-4 w-52 p-2 shadow">
           <li><a>Item 1</a></li>
           <li><a>Item 2</a></li>
         </ul>
-      </div>
+      </div> } 
+     
  
 
 
-     </NavLink>
+   
     </>
+
+    
   return (
     <div className="navbar container mx-auto py-4 bg-base-100">
   <div className="navbar-start">
@@ -49,9 +82,9 @@ function Navbar() {
        {navitems}
       </ul>
     </div>
-    <div className="flex items-center space-x-4">
-      <img src={logo} className="w-16" alt="Home_repair"  />
-    <a className="btn btn-ghost text-xl font-bold">Home repair</a>
+    <div className="flex items-center">
+      <img src={logo} className=" w-12 md:w-16" alt="Home_repair"  />
+    <a className="btn btn-ghost  md:text-xl font-bold">Home repair</a>
     </div>
   </div>
   <div className="navbar-center hidden lg:flex">
@@ -60,7 +93,17 @@ function Navbar() {
     </ul>
   </div>
   <div className="navbar-end">
-    <Link to={'/login'} className="btn">Login</Link>
+    {user ? <>
+      <div className="flex items-center space-x-2">
+        
+        <img className=" rounded-full w-12" src={user.photoURL} alt=""  />
+        <Button  onClick={handleLogout} className="bg-rose-500">LogOut</Button>
+      </div>
+    </> : <>
+    <Link to={'/LoginPage'} className="btn">Login</Link>
+    
+    </>}
+    
   </div>
 </div>
   )
