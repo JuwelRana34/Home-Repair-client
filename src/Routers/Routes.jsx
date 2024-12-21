@@ -5,6 +5,7 @@ import LoginPage from '../Pages/LoginPage'
 import Services from "../Pages/Services";
 import Dashboard from "../Pages/Dashboard";
 import Not_found from "../Pages/not_found";
+import SignUp from "../Pages/SignUp";
 
 const AppRoute = () => {
   return(
@@ -12,6 +13,7 @@ const AppRoute = () => {
     <Route path="/" element={<App />}>
       <Route index element={<Home />} />
       <Route path='LoginPage' element={<LoginPage />} />
+      <Route path='signup' element={<SignUp />} />
       <Route path="services" element={<Services />} />
       <Route path="dashboard" element={<Dashboard />} />
     </Route>

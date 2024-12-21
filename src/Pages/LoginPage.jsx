@@ -2,10 +2,10 @@ import { useContext } from "react"
 import UserContext from "../Context/AuthContext"
 import { Link, useNavigate } from "react-router";
 import { Button, Divider, toast } from 'keep-react'
-
+import { useLocation } from "react-router-dom";
 function LoginPage() {
   const {GoogleLogin,login} = useContext(UserContext)
-
+  const {state} = useLocation()
   const navigate = useNavigate();
   const Login = (e) => {
     e.preventDefault();
@@ -23,9 +23,8 @@ function LoginPage() {
   const GoogleLoginf = (e) => {
     e.preventDefault();
     GoogleLogin()
-     .then((res) => {
-        console.log(res);
-        navigate("/");
+     .then(() => {
+        navigate(state ? state :  '/')
         toast.success('Login Successful')
       })
      .catch((err) => {
@@ -79,7 +78,7 @@ function LoginPage() {
            
            </Button>
 
-           <h1 className="text-center py-2 font-semibold text-gray-600">you haven&apos;t account? <Link className="text-blue-600" to={'/registration'}> registration </Link > </h1>
+           <h1 className="text-center py-2 font-semibold text-gray-600">you haven&apos;t account? <Link className="text-blue-600" to={'/signup'}> registration </Link > </h1>
       </div>
  
   )

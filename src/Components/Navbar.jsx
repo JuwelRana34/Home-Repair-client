@@ -6,19 +6,20 @@ import { Button, toast } from "keep-react"
 
 function Navbar() {
    const {pathname}= useLocation()
-   const {user ,LogOut ,setUser} = useContext(UserContext)
+   const {user ,LogOut ,setUser,setIsloading} = useContext(UserContext)
 
 
 const navigate = useNavigate();
    const handleLogout = () => {
       LogOut()
       .then(() => {
-            
+        setIsloading(false)  
             setUser(null);
             navigate("/");
             toast.warning("Logged Out Successfully");
           })
           .catch((err) => {
+            setIsloading(false);
             toast.error(err);
           });
    }

@@ -6,9 +6,11 @@ import {
   signInWithPopup,
   createUserWithEmailAndPassword,
   signOut,
-  onAuthStateChanged, 
-  deleteUser
+  onAuthStateChanged,
+  updateProfile, 
+
 } from "firebase/auth";
+import { toast } from "sonner";
 
 const UserContext = createContext();
 
@@ -35,10 +37,14 @@ export const AuthProvider = ({ children }) => {
      
   };
 
-  const DeleteUser = (user)=>{
-     return deleteUser(user)
-
-  }
+  const UpdateProfile = ( name , photo)=>{
+    if(!auth.currentUser){
+        toast.error('You are not logged in')
+        return;
+    }
+    return updateProfile(auth.currentUser, { displayName: name, photoURL: photo})
+     
+   }
 
   useEffect(()=>{
 
@@ -67,7 +73,8 @@ export const AuthProvider = ({ children }) => {
     setUser,
     user,
     isLoading,
-    DeleteUser
+    UpdateProfile,
+    setIsloading
   };
 
   return (
