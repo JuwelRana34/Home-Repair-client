@@ -29,6 +29,10 @@ const navigate = useNavigate();
        "/": "Home | Home repair",
        "/LoginPage": "Login | Home repair",
        "/services": "services | Home repair",
+       "/service-To-Do": "Service_To_Do | Home repair",
+       "/manage-service": "Manage_service | Home repair",
+       "/add-service": "Add_service | Home repair",
+       "/booked-services": "booked-services | Home repair",
      };
      document.title = DynamicTitle[pathname] || "Home repair";
    }, [pathname]);
@@ -47,16 +51,15 @@ const navigate = useNavigate();
         <ul
           tabIndex={0}
           className="menu dropdown-content text-black bg-base-100 border rounded-lg mt-4 w-52 p-2 shadow">
-          <li><a>Item 1</a></li>
-          <li><a>Item 2</a></li>
+          <Link to={'/add-service'}>Add Service</Link>
+          <Link to={'/manage-service'}>Manage Service</Link>
+          <Link to={'/booked-services'}>Booked-Services</Link>
+        <Link to={'/service-To-Do'}>Service-To-Do</Link>
         </ul>
       </div> } 
      
- 
+  </>
 
-
-   
-    </>
 
     
   return (

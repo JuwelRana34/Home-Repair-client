@@ -6,6 +6,10 @@ import Services from "../Pages/Services";
 import Dashboard from "../Pages/Dashboard";
 import Not_found from "../Pages/not_found";
 import SignUp from "../Pages/SignUp";
+import Add_service from "../Pages/Add_service";
+import Booked_services from "../Pages/Booked_services";
+import Manage_service from "../Pages/Manage_service";
+import Service_To_Do from "../Pages/Service_To_Do";
 
 const AppRoute = () => {
   return(
@@ -16,6 +20,10 @@ const AppRoute = () => {
       <Route path='signup' element={<SignUp />} />
       <Route path="services" element={<Services />} />
       <Route path="dashboard" element={<Dashboard />} />
+      <Route path="add-service" element={<Add_service />} />
+      <Route path="manage-service" element={< Manage_service/>} />
+      <Route path="booked-services" element={<Booked_services />} />
+      <Route path="service-To-Do" element={<Service_To_Do/>} />
     </Route>
     <Route path="/*" element={<Not_found />} />
   </Routes>

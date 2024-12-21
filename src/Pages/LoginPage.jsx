@@ -2,7 +2,7 @@ import { useContext } from "react"
 import UserContext from "../Context/AuthContext"
 import { Link, useNavigate } from "react-router";
 import { Button, Divider, toast } from 'keep-react'
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router";
 function LoginPage() {
   const {GoogleLogin,login} = useContext(UserContext)
   const {state} = useLocation()
