@@ -2,16 +2,21 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import UserContext from "../Context/AuthContext";
 import { toast } from "sonner";
-
+import axios from "axios";
+import { useMutation } from "@tanstack/react-query";
 function Add_service() {
   const { user } = useContext(UserContext);
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
+  const { isPending, isSuccess, isError, error, mutate } = useMutation({
+    mutationFn: (service) => {
+      return axios.post(`${import.meta.env.VITE_API}/AddService`, service);
+    },
+  });
 
   const onSubmit = (data) => {
     const checkPhotoLink = /(https?:\/\/.*\.(?:png|jpg)$)/i;
 
     if (!checkPhotoLink.test(data.Photo_url)) {
-      console.log(data);
       return toast.error("Please enter a valid image link");
     }
 
@@ -19,18 +24,33 @@ function Add_service() {
       return toast.error("Please enter a valid price");
     }
 
-    // add post method with axios user data also 
-    
-
-
-
-
- 
+    mutate({
+      ...data,
+      Provider_info: {
+        Provider_name: user.displayName,
+        Provider_email: user.email,
+        Provider_photo: user.photoURL,
+      },
+    });
+   
+    reset();
   };
+
+  if (isSuccess) {
+    toast.success("Service added successfully");
+    
+  }
+
+  if (isError) {
+    console.log(error.message);
+    toast.error("Failed to add service");
+  }
 
   return (
     <div>
-      <h1 className="text-4xl mb-10 text-gray-700 text-center my-5 font-bold">Add Your Service</h1>
+      <h1 className="text-4xl mb-10 text-gray-700 text-center my-5 font-bold">
+        Add Your Service
+      </h1>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className=" md:grid items-start  gap-5 w-[80%]  mx-auto space-y-4"
@@ -74,7 +94,7 @@ function Add_service() {
         <input
           className="border p-2 font-semibold rounded-md hover:cursor-pointer  w-full col-span-2 my-5"
           type="submit"
-          value="Add service"
+          value={`${isPending ? "Adding service..." : "Add service"}`}
         />
       </form>
     </div>
