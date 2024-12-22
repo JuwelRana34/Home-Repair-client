@@ -88,7 +88,7 @@ const navigate = useNavigate();
     </div>
     <div className="flex items-center">
       <img src={logo} className=" w-12 md:w-16" alt="Home_repair"  />
-    <a className="btn btn-ghost  md:text-xl font-bold">Home repair</a>
+    <Link to={'/'} className="btn btn-ghost  md:text-xl font-bold">Home repair</Link>
     </div>
   </div>
   <div className="navbar-center hidden lg:flex">

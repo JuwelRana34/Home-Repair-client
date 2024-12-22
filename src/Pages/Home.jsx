@@ -1,12 +1,12 @@
 
-// import Slider from "../Components/Slider";
+import Slider from "../Components/Slider";
 
 function Home() {
   
 
   return (
     <>
-      {/* <Slider/> */}
+      <Slider/>
 
       
     </>
