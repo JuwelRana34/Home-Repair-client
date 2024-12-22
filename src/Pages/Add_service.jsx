@@ -27,9 +27,9 @@ function Add_service() {
     mutate({
       ...data,
       Provider_info: {
-        Provider_name: user.displayName,
-        Provider_email: user.email,
-        Provider_photo: user.photoURL,
+        name: user.displayName,
+        email: user.email,
+        photo: user.photoURL,
       },
     });
    

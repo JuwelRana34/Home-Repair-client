@@ -1,32 +1,40 @@
+/* eslint-disable react/prop-types */
+import axios from 'axios';
 import { Button, Card, CardContent, CardDescription, CardHeader, CardTitle } from 'keep-react'
 import { IoLocationSharp } from "react-icons/io5";
+import { Link } from 'react-router';
 
-function ServiceCard() {
+function ServiceCard({service}) {
+   const {Service_Name, Service_Area, price,Description,Photo_url,Provider_info,_id} = service
+
   return (
     <Card className='w-full mx-auto'>
         
       <CardHeader className='w-full'>
-       <img src="https://i.ibb.co.com/rsPxmfY/07-699f9620f4254f2e9aae0f8fe9e580ab.jpg" alt="" />
+       <img src={Photo_url} alt="" />
       </CardHeader>
       <CardContent className="space-y-3">
-        <CardTitle>Name</CardTitle>
+        <CardTitle>{Service_Name}</CardTitle>
         <CardDescription>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi ipsam animi voluptas perspiciatis quidem esse! max100 caracter user substring..
+         {Description}
         </CardDescription>
+       <Link to={`/serviceDetails/${_id}`}>
         <Button className='bg-blue-500'>View Details</Button>
+        </Link>
         <p className=' capitalize font-semibold text-md'>Service Provider</p>
-        {/* <div className="flex items-center mt-4 md:mt-0 md:ml-auto">
+        <div className="flex items-center mt-4 md:mt-0 md:ml-auto">
           <img
-            src={service.provider.image}
-            alt={service.provider.name}
+            src={Provider_info.photo}
+            alt={Provider_info.name}
             className="w-10 h-10 rounded-full"
           />
           <span className="ml-2 text-gray-800 font-medium">
-            {service.provider.name}
+            {Provider_info.name} <br />
+            {Provider_info.email}
           </span>
-        </div> */}
-        <p className=' flex items-center gap-1 capitalize font-semibold text-md'> <IoLocationSharp /> area:  dhaka </p>
-        <p className=' capitalize font-semibold text-md'> price: $ 25 </p>
+        </div>
+        <p className=' flex items-center gap-1 capitalize font-semibold text-md'> <IoLocationSharp /> area: {Service_Area} </p>
+        <p className=' capitalize font-semibold text-md'> price: $ {price}</p>
       </CardContent>
     </Card>
     

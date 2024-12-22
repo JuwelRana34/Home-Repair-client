@@ -11,6 +11,7 @@ import Booked_services from "../Pages/Booked_services";
 import Manage_service from "../Pages/Manage_service";
 import Service_To_Do from "../Pages/Service_To_Do";
 import PrivetRoute from "./PrivetRoute";
+import ServiceDetails from "../Pages/ServiceDetails";
 
 const AppRoute = () => {
   return(
@@ -25,6 +26,7 @@ const AppRoute = () => {
       <Route path="manage-service" element={< Manage_service/>} />
       <Route path="booked-services" element={<Booked_services />} />
       <Route path="service-To-Do" element={<Service_To_Do/>} />
+      <Route path="serviceDetails/:id" element={<ServiceDetails/>} />
     </Route>
     <Route path="/*" element={<Not_found />} />
   </Routes>
