@@ -1,13 +1,12 @@
-import { useContext } from "react";
-import UserContext from "../Context/AuthContext";
-import { useNavigate } from "react-router";
+
+import Slider from "../Components/Slider";
 
 function Home() {
   
 
   return (
     <>
-      
+      <Slider/>
 
       
     </>

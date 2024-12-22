@@ -14,7 +14,7 @@ function LoginPage() {
     login(email.value, password.value)
       .then((res) => {
         console.log(res);
-        navigate("/Home");
+        navigate(state ? state :  '/')
       })
       .catch((err) => console.log(err));
     e.target.reset();
@@ -35,7 +35,7 @@ function LoginPage() {
   return (
 
       
-      <div className="card bg-base-100 w-full max-w-sm mx-auto shrink-0 shadow-2xl">
+      <div className="card  bg-base-100 w-full max-w-sm mx-auto shrink-0 shadow-2xl">
         <form onSubmit={Login} className="card-body p-5">
          <h1 className="text-3xl font-bold text-center text-orange-600">Login</h1>
           <div className="form-control">

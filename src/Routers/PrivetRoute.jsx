@@ -1,11 +1,12 @@
 import  { useContext } from 'react'
-import { AuthContext } from '../../Contexts/AuthContext'
-import { Navigate, useLocation } from 'react-router-dom'
+
+import { Navigate, useLocation } from 'react-router'
+import UserContext from '../Context/AuthContext'
 // import Loading from '../../Pages/Loading'
 
 // eslint-disable-next-line react/prop-types
 function PrivetRoute({children}) {
-    const {user ,isLoading} = useContext(AuthContext)
+    const {user ,isLoading} = useContext(UserContext)
     const location = useLocation()
 
     if (isLoading) {
@@ -14,7 +15,7 @@ function PrivetRoute({children}) {
     }
 
 if (!user) {
-    return <Navigate state={location.pathname} to='/Login'></Navigate>
+    return <Navigate state={location.pathname} to='/loginPage'></Navigate>
 
 }
   return (

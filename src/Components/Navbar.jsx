@@ -1,5 +1,5 @@
 import { Link, NavLink, useLocation, useNavigate } from "react-router"
-import logo from "../../public/mechanic.gif"
+import logo from "../assets/mechanic.gif"
 import { useContext, useEffect} from "react"
 import UserContext from "../Context/AuthContext"
 import { Button, toast } from "keep-react"
@@ -50,7 +50,7 @@ const navigate = useNavigate();
         <div tabIndex={0} role="button" className={` p-2 flex items-center rounded-btn `}>Dashboard</div>
         <ul
           tabIndex={0}
-          className="menu dropdown-content text-black bg-base-100 border rounded-lg mt-4 w-52 p-2 shadow">
+          className="menu z-[500] dropdown-content text-black bg-base-100 border rounded-lg mt-4 w-52 p-2 shadow">
           <Link to={'/add-service'}>Add Service</Link>
           <Link to={'/manage-service'}>Manage Service</Link>
           <Link to={'/booked-services'}>Booked-Services</Link>
