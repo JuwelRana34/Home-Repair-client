@@ -100,7 +100,7 @@ const navigate = useNavigate();
     {user ? <>
       <div className="flex items-center space-x-2">
         
-        <img className=" rounded-full w-12" src={user.photoURL} alt=""  />
+        <img className=" rounded-full h-12  shadow-lg w-12" src={user.photoURL} alt=""  />
         <Button  onClick={handleLogout} className="bg-rose-500">LogOut</Button>
       </div>
     </> : <>

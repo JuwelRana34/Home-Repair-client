@@ -12,8 +12,8 @@ function LoginPage() {
     const { email, password } = e.target;
 
     login(email.value, password.value)
-      .then((res) => {
-        console.log(res);
+      .then(() => {
+        toast.success(" Login Successful");
         navigate(state ? state :  '/')
       })
       .catch((err) => console.log(err));
