@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import axios from 'axios';
 import { Button, Card, CardContent, CardDescription, CardHeader, CardTitle } from 'keep-react'
 import { IoLocationSharp } from "react-icons/io5";
 import { Link } from 'react-router';

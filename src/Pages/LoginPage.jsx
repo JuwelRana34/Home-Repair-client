@@ -16,7 +16,9 @@ function LoginPage() {
         toast.success(" Login Successful");
         navigate(state ? state :  '/')
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        toast.error(`${err}`);
+        console.log(err)});
     e.target.reset();
   };
 
