@@ -11,6 +11,7 @@ import {
 
 } from "firebase/auth";
 import { toast } from "sonner";
+import axios from "axios";
 
 const UserContext = createContext();
 
@@ -49,13 +50,25 @@ export const AuthProvider = ({ children }) => {
   useEffect(()=>{
 
     const Unsubscribe =  onAuthStateChanged(auth,(user)=>{
-        if (user){
+        // if (user){
             setUser(user)
-            setIsloading(false)
-
-        }else{
-            setIsloading(false)
-        }
+            if(user?.email){
+              const email = user.email
+              axios.post(`${import.meta.env.VITE_API}/jwt`,{email},{
+                withCredentials: true
+              }).then(({data})=>{
+                console.log(data)
+                setIsloading(false)
+              })
+            }else{
+              axios.post(`${import.meta.env.VITE_API}/logOut`,{},{
+                withCredentials: true
+              }).then(({data})=>{
+                console.log(data)
+                setIsloading(false)
+              })
+            }
+           
     })
     return ()=>{
        Unsubscribe; 

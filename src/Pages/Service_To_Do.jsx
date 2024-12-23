@@ -20,6 +20,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useContext, useState } from "react";
 import UserContext from "../Context/AuthContext";
+import SecureAxios from "../hook/SecureAxios";
 
 function Service_To_Do() {
   // const [status, setStatus] = useState('Pending')
@@ -28,7 +29,7 @@ function Service_To_Do() {
   const { isLoading, error, isError, data } = useQuery({
     queryKey: ["booked_services"],
     queryFn: () => {
-      return axios.get(
+      return SecureAxios.get(
         `${import.meta.env.VITE_API}/service_To_Do/${user.email}`
       );
     },

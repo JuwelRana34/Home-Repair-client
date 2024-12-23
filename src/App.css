@@ -1,6 +1,11 @@
-.active{
-    background-color: rgb(0, 57, 96);
-   color: #fff;
-   border-radius: 5px;  
+.active {
+  background-color: #003960;
+  color: #fff;
+  border-radius: 5px;
 }
 
+body {
+  font-family: "Nunito", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}

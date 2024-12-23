@@ -33,7 +33,7 @@ function Services() {
 
   return (
     <div className="container mx-auto px-4 py-6">
-    <h2 className="text-2xl text-center font-bold mb-4">Our Services</h2>
+    <h2 className="text-2xl text-center text-[ #1A73E8] font-bold mb-4">Our Services</h2>
 
 <label className="input input-bordered md:w-[50%] my-10 mx-auto flex items-center gap-2">
   <input onChange={(e)=>setSearch(e.target.value)}  type="text" className=" grow" placeholder="Search" />

@@ -1,12 +1,12 @@
 import { MdDeleteForever } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
 import { useQueryClient, useMutation, useQuery } from "@tanstack/react-query";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import UserContext from "../Context/AuthContext";
 import axios from "axios";
 import { toast } from "sonner";
 import ModalForm from "../Components/ModalForm";
-
+import SecureAxios from "../hook/SecureAxios";
 function Manage_service() {
   const { user } = useContext(UserContext);
   const [selectId, setSelectId] = useState(null);
@@ -16,7 +16,7 @@ function Manage_service() {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["myPostedServices"],
     queryFn: async () => {
-      return await axios.get(`${import.meta.env.VITE_API}/AddService/${user.email}`);
+      return await SecureAxios.get(`${import.meta.env.VITE_API}/AddService/${user.email}`);
     },
   });
   const { mutate } = useMutation({

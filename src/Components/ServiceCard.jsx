@@ -7,7 +7,7 @@ function ServiceCard({service}) {
    const {Service_Name, Service_Area, price,Description,Photo_url,Provider_info,_id} = service
 
   return (
-    <Card className=' md:flex md:p-4 my-1 gap-5 items-center md:max-w-[80%] mx-auto'>
+    <Card className=' md:flex md:p-4 my-1 gap-5 items-center md:max-w-[80%] mx-auto  rounded-md shadow-md'>
         
       <CardHeader className='md:w-[50%]'>
        <img className=' rounded-md' src={Photo_url} alt="" />

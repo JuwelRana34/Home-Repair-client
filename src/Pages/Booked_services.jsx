@@ -1,17 +1,16 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from 'keep-react'
-import axios from "axios";
 import { useQuery } from '@tanstack/react-query'
 import { toast } from "sonner";
 import { useContext } from 'react';
 import UserContext from '../Context/AuthContext';
+import SecureAxios from '../hook/SecureAxios';
 
 function Booked_services() {
   const { user } = useContext(UserContext);
   const { isLoading , error , isError, data }= useQuery({ queryKey: ["booked_services"], queryFn: () =>{
-    return axios.get(`${import.meta.env.VITE_API}/booked_service/${user.email}`)
+    return  SecureAxios.get(`${import.meta.env.VITE_API}/booked_service/${user?.email}`)
   } });
 
-  console.log(data)
   if(isLoading) return <div>Loading...</div>
 
   if(isError) return toast.error('An error has occurred: ' + error.message)
@@ -43,10 +42,10 @@ function Booked_services() {
       </TableRow>
     </TableHeader>
     <TableBody>
-      {data.data.length === 0 ?<>NO services booked yet!</>: <>
+      {data?.data?.length === 0 ?<>NO services booked yet!</>: <>
       
      
-      {data.data.map((item) => (
+      {data?.data?.map((item) => (
         <TableRow key={item._id}>
           <TableCell>
             <div className="max-w-[250px] truncate"> <img className=' rounded-full w-16  h-16 object-cover object-center ' src={item.Photo_url}alt=""  /></div>
