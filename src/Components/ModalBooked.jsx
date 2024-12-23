@@ -16,7 +16,7 @@ function ModalBooked({ item }) {
       axios.post(`${import.meta.env.VITE_API}/booked_service`, data);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(["myPostedServices"]);
+      queryClient.invalidateQueries(["booked_services"]);
       toast.success("Service booked successfully!");
       document.getElementById("my_modal_2").close();
     },

@@ -12,7 +12,7 @@ function ModalForm({ item }) {
   const queryClient = useQueryClient();
   const { mutate, isError, isSuccess, error, isPending } = useMutation({
     mutationFn: async (data) => {
-      axios.patch(`${import.meta.env.VITE_API}/AddService/${item._id}`, data);
+       axios.patch(`${import.meta.env.VITE_API}/AddService/${item._id}`, data);
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["myPostedServices"]);

@@ -1,21 +1,40 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from 'keep-react'
 import { Select, SelectAction, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectValue } from 'keep-react'
+import axios from "axios";
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { toast } from "sonner";
+import { useContext, useState } from 'react';
+import UserContext from '../Context/AuthContext';
 
 
 function Service_To_Do() {
-  const tableData = [
-    {
-      id: 1,
-      fileName: 'Landscape-Beach.png',
-      fileFormat: 'Png',
-      ratio: '16:9',
-      resolution: '1920x1080',
-      fileSize: '43 KB',
-      status: 'In Progress',
-    },
-    
-  ]
+  // const [status, setStatus] = useState('Pending')
+  const { user } = useContext(UserContext);
+  const queryClient = useQueryClient();
+  const { isLoading , error , isError, data }= useQuery({ queryKey: ["booked_services"], queryFn: () =>{
+    return axios.get(`${import.meta.env.VITE_API}/service_To_Do/${user.email}`)
+  } });
 
+  const { mutate } = useMutation({
+    mutationFn: async ({id, newStatus}) => {
+      await axios.patch(`${import.meta.env.VITE_API}/service_To_Do/${newStatus}/${id}`);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["booked_services"]);
+      toast.success("Status updated successfully");
+    }
+
+  })
+
+  const handelStatus=(id,newStatus) =>{
+  
+    mutate({ id, newStatus });
+  }
+
+
+  if(isLoading) return <div>Loading...</div>
+
+  if(isError) return toast.error('An error has occurred: ' + error.message)
   
   return (
     <Table>
@@ -42,18 +61,20 @@ function Service_To_Do() {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {tableData.map((item) => (
+        {data.data.map((item) => (
           <TableRow key={item.id}>
             <TableCell>
-              <div className="max-w-[250px] truncate">{item.fileName}</div>
+              <div className="max-w-[250px] truncate"> <img className=' rounded-full w-16  h-16 object-cover object-center ' src={item.Photo_url}alt=""  /></div>
             </TableCell>
-            <TableCell>{item.fileFormat}</TableCell>
-            <TableCell>{item.ratio}</TableCell>
-            <TableCell>{item.resolution}</TableCell>
-            <TableCell>{item.fileSize}</TableCell>
+            <TableCell>{item.Service_Name}</TableCell>
+            <TableCell>{item.special_instruction}</TableCell>
+
+            <TableCell>{ new Date(item.service_taking_data).toLocaleDateString() }</TableCell>
+            <TableCell>{item.customer_name}</TableCell>
             <TableCell>
          
-                <Select defaultValue="pending">
+               {item?.status &&  
+               <Select onValueChange={(value) => handelStatus(item._id, value)} defaultValue={item.status} >
                   <SelectAction className="w-[7rem]">
                     <SelectValue placeholder="Select status" />
                   </SelectAction>
@@ -66,7 +87,7 @@ function Service_To_Do() {
                     </SelectGroup>
                   </SelectContent>
                 </Select>
-           
+           }
             </TableCell>
           </TableRow>
         ))}
