@@ -13,7 +13,7 @@ function ServiceCard({service}) {
        <img className=' rounded-md' src={Photo_url} alt="" />
       </CardHeader>
 
-      <CardContent className="space-y-5 p-0 flex-col gap-5">
+      <CardContent className="space-y-5 p-4 flex-col gap-5">
         <div className='space-y-2'>
           <CardTitle className=' capitalize'>{Service_Name}</CardTitle>
         <CardDescription >

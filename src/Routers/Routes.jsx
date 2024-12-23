@@ -23,10 +23,10 @@ const AppRoute = () => {
       <Route path="services" element={<Services />} />
       <Route path="dashboard" element={<Dashboard />} />
       <Route path="add-service" element={ <PrivetRoute> <Add_service /> </PrivetRoute> } />
-      <Route path="manage-service" element={< Manage_service/>} />
-      <Route path="booked-services" element={<Booked_services />} />
-      <Route path="service-To-Do" element={<Service_To_Do/>} />
-      <Route path="serviceDetails/:id" element={<ServiceDetails/>} />
+      <Route path="manage-service" element={<PrivetRoute>< Manage_service/></PrivetRoute>} />
+      <Route path="booked-services" element={<PrivetRoute><Booked_services /></PrivetRoute>} />
+      <Route path="service-To-Do" element={<PrivetRoute><Service_To_Do/></PrivetRoute>} />
+      <Route path="serviceDetails/:id" element={<PrivetRoute><ServiceDetails/></PrivetRoute>} />
     </Route>
     <Route path="/*" element={<Not_found />} />
   </Routes>

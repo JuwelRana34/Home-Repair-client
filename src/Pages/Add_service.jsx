@@ -92,7 +92,7 @@ function Add_service() {
         />
 
         <input
-          className="border p-2 font-semibold rounded-md hover:cursor-pointer  w-full col-span-2 my-5"
+          className="border p-2 bg-gradient-to-tr from-orange-500 to-rose-500  text-white font-semibold rounded-md hover:cursor-pointer  w-full col-span-2 my-5"
           type="submit"
           value={`${isPending ? "Adding service..." : "Add service"}`}
         />
