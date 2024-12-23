@@ -1,56 +1,25 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from 'keep-react'
-
+import axios from "axios";
+import { useQuery } from '@tanstack/react-query'
+import { toast } from "sonner";
+import { useContext } from 'react';
+import UserContext from '../Context/AuthContext';
 
 function Booked_services() {
-  const tableData = [
-    {
-      id: 1,
-      fileName: 'Landscape-Beach.png',
-      fileFormat: 'Png',
-      ratio: '16:9',
-      resolution: '1920x1080',
-      fileSize: '43 KB',
-      status: 'In Progress',
-    },
-    {
-      id: 2,
-      fileName: 'Portrait-Sunset.jpg',
-      fileFormat: 'Jpg',
-      ratio: '4:3',
-      resolution: '1024x768',
-      fileSize: '128 KB',
-      status: 'Complete',
-    },
-    {
-      id: 3,
-      fileName: 'Cityscape-Night.png',
-      fileFormat: 'Png',
-      ratio: '16:9',
-      resolution: '3840x2160',
-      fileSize: '210 KB',
-      status: 'Pending',
-    },
-    {
-      id: 4,
-      fileName: 'Animation-Loading.gif',
-      fileFormat: 'Gif',
-      ratio: '1:1',
-      resolution: '800x800',
-      fileSize: '76 KB',
-      status: 'In Progress',
-    },
-    {
-      id: 5,
-      fileName: 'Mountain-Peak.jpg',
-      fileFormat: 'Jpg',
-      ratio: '16:9',
-      resolution: '2560x1440',
-      fileSize: '312 KB',
-      status: 'Complete',
-    },
-  ]
+  const { user } = useContext(UserContext);
+  const { isLoading , error , isError, data }= useQuery({ queryKey: ["booked_services"], queryFn: () =>{
+    return axios.get(`${import.meta.env.VITE_API}/booked_service/${user.email}`)
+  } });
+
+  console.log(data)
+  if(isLoading) return <div>Loading...</div>
+
+  if(isError) return toast.error('An error has occurred: ' + error.message)
+
   return (
-    <Table>
+    <div className='md:px-8 mt-5'>
+     <h1 className=' text-3xl py-5 mb-5 capitalize font-bold text-center text-gray-700'> my Booked services </h1>
+    <Table >
     <TableHeader>
       <TableRow>
         <TableHead>
@@ -74,20 +43,26 @@ function Booked_services() {
       </TableRow>
     </TableHeader>
     <TableBody>
-      {tableData.map((item) => (
-        <TableRow key={item.id}>
+      {data.data.length === 0 ?<>NO services booked yet!</>: <>
+      
+     
+      {data.data.map((item) => (
+        <TableRow key={item._id}>
           <TableCell>
-            <div className="max-w-[250px] truncate">{item.fileName}</div>
+            <div className="max-w-[250px] truncate"> <img className=' rounded-full w-16  h-16 object-cover object-center ' src={item.Photo_url}alt=""  /></div>
           </TableCell>
-          <TableCell>{item.fileFormat}</TableCell>
-          <TableCell>{item.ratio}</TableCell>
-          <TableCell>{item.resolution}</TableCell>
-          <TableCell>{item.fileSize}</TableCell>
+          <TableCell>{item.Service_Name}</TableCell>
+          <TableCell>{item.price}</TableCell>
+          <TableCell>{ new Date(item.service_taking_data).toLocaleDateString() }</TableCell>
+          <TableCell>{item.Provider_email}</TableCell>
           <TableCell>{item.status}</TableCell>
         </TableRow>
       ))}
+
+</>}
     </TableBody>
   </Table>
+    </div>
   )
 }
 
