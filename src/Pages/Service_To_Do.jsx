@@ -1,43 +1,61 @@
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from 'keep-react'
-import { Select, SelectAction, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectValue } from 'keep-react'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "keep-react";
+import {
+  Select,
+  SelectAction,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectValue,
+} from "keep-react";
 import axios from "axios";
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { useContext, useState } from 'react';
-import UserContext from '../Context/AuthContext';
-
+import { useContext, useState } from "react";
+import UserContext from "../Context/AuthContext";
 
 function Service_To_Do() {
   // const [status, setStatus] = useState('Pending')
   const { user } = useContext(UserContext);
   const queryClient = useQueryClient();
-  const { isLoading , error , isError, data }= useQuery({ queryKey: ["booked_services"], queryFn: () =>{
-    return axios.get(`${import.meta.env.VITE_API}/service_To_Do/${user.email}`)
-  } });
+  const { isLoading, error, isError, data } = useQuery({
+    queryKey: ["booked_services"],
+    queryFn: () => {
+      return axios.get(
+        `${import.meta.env.VITE_API}/service_To_Do/${user.email}`
+      );
+    },
+  });
 
   const { mutate } = useMutation({
-    mutationFn: async ({id, newStatus}) => {
-      await axios.patch(`${import.meta.env.VITE_API}/service_To_Do/${newStatus}/${id}`);
+    mutationFn: async ({ id, newStatus }) => {
+      await axios.patch(
+        `${import.meta.env.VITE_API}/service_To_Do/${newStatus}/${id}`
+      );
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["booked_services"]);
       toast.success("Status updated successfully");
-    }
+    },
+  });
 
-  })
-
-  const handelStatus=(id,newStatus) =>{
-  
+  const handelStatus = (id, newStatus) => {
     mutate({ id, newStatus });
-  }
+  };
 
+  if (isLoading) return <div>Loading...</div>;
 
-  if(isLoading) return <div>Loading...</div>
+  if (isError) return toast.error("An error has occurred: " + error.message);
 
-  if(isError) return toast.error('An error has occurred: ' + error.message)
-  
   return (
-    <Table>
+    <Table >
       <TableHeader>
         <TableRow>
           <TableHead>
@@ -64,30 +82,54 @@ function Service_To_Do() {
         {data.data.map((item) => (
           <TableRow key={item.id}>
             <TableCell>
-              <div className="max-w-[250px] truncate"> <img className=' rounded-full w-16  h-16 object-cover object-center ' src={item.Photo_url}alt=""  /></div>
+              <div className="max-w-[250px] truncate">
+                {" "}
+                <img
+                  className=" rounded-md w-16  h-16 object-cover "
+                  src={item.Photo_url}
+                  alt=""
+                />
+              </div>
             </TableCell>
             <TableCell>{item.Service_Name}</TableCell>
             <TableCell>{item.special_instruction}</TableCell>
 
-            <TableCell>{ new Date(item.service_taking_data).toLocaleDateString() }</TableCell>
+            <TableCell>
+              {new Date(item.service_taking_data).toLocaleDateString()}
+            </TableCell>
             <TableCell>{item.customer_name}</TableCell>
             <TableCell>
-         
-               {item?.status &&  
-               <Select onValueChange={(value) => handelStatus(item._id, value)} defaultValue={item.status} >
-                  <SelectAction className="w-[7rem]">
-                    <SelectValue placeholder="Select status" />
-                  </SelectAction>
-                  <SelectContent>
-                    <SelectGroup>
-                      <SelectLabel>select status</SelectLabel>
-                      <SelectItem value="pending">pending </SelectItem>
-                      <SelectItem value="working">working</SelectItem>
-                      <SelectItem value="completed">completed</SelectItem>
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-           }
+              {item?.status && (
+                // <Select
+                //   onValueChange={(value) => handelStatus(item._id, value)}
+                //   value={item.status||"pending"}
+                // >
+                //   <SelectAction className="w-[7rem]">
+                //     <SelectValue placeholder="Select status" />
+                //   </SelectAction>
+                //   <SelectContent>
+                //     <SelectGroup>
+                //       <SelectLabel>select status</SelectLabel>
+                //       <SelectItem value="pending">pending </SelectItem>
+                //       <SelectItem value="working">working</SelectItem>
+                //       <SelectItem value="completed">completed</SelectItem>
+                //     </SelectGroup>
+                //   </SelectContent>
+                // </Select>
+
+                <select
+                  className="border p-2 rounded-md"
+                  value={item.status}
+                  onChange={(value) =>
+                    handelStatus(item._id, value.target.value)
+                  }
+                  id=""
+                >
+                  <option value="pending">pending</option>
+                  <option value="working">working</option>
+                  <option value="completed">completed</option>
+                </select>
+              )}
             </TableCell>
           </TableRow>
         ))}
@@ -96,4 +138,4 @@ function Service_To_Do() {
   );
 }
 
-export default Service_To_Do
+export default Service_To_Do;

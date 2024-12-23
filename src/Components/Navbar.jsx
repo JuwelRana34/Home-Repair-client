@@ -50,7 +50,7 @@ const navigate = useNavigate();
         <div tabIndex={0} role="button" className={` p-2 flex items-center rounded-btn `}>Dashboard</div>
         <ul
           tabIndex={0}
-          className="menu z-[500] dropdown-content text-black bg-base-100 border rounded-lg mt-4 w-52 p-2 shadow">
+          className="menu  z-[500] dropdown-content text-black bg-base-100 border rounded-lg mt-4 w-52 p-2 shadow">
           <Link to={'/add-service'}>Add Service</Link>
           <Link to={'/manage-service'}>Manage Service</Link>
           <Link to={'/booked-services'}>Booked-Services</Link>
@@ -82,7 +82,7 @@ const navigate = useNavigate();
       </div>
       <ul
         tabIndex={0}
-        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+        className="menu font-semibold menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
        {navitems}
       </ul>
     </div>
@@ -92,7 +92,7 @@ const navigate = useNavigate();
     </div>
   </div>
   <div className="navbar-center hidden lg:flex">
-    <ul className="menu menu-horizontal px-1">
+    <ul className="menu font-semibold menu-horizontal px-1">
      {navitems}
     </ul>
   </div>

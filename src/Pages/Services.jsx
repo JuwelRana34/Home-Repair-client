@@ -22,11 +22,14 @@ function Services() {
   {/* <kbd className="kbd kbd-sm">⌘</kbd>
   <kbd className="kbd kbd-sm">K</kbd> */}
 </label>
-  {
+<div className="space-y-5">
+ {
     data.data.map((service) => {
       return <ServiceCard key={service.id} service={service}/>
     })
   }
+</div>
+ 
   </div>
   )
 }
