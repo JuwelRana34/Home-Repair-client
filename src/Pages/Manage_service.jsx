@@ -1,7 +1,7 @@
 import { MdDeleteForever } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
 import { useQueryClient, useMutation, useQuery } from "@tanstack/react-query";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import UserContext from "../Context/AuthContext";
 import axios from "axios";
 import { toast } from "sonner";
@@ -10,28 +10,30 @@ import ModalForm from "../Components/ModalForm";
 function Manage_service() {
   const { user } = useContext(UserContext);
   const [selectId, setSelectId] = useState(null);
-  const QueryClient = useQueryClient();
-
+  // const [data , setData] = useState([])
+  const queryClient = useQueryClient()
 
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["myPostedServices"],
-    queryFn: () => {
-      return axios.get(`${import.meta.env.VITE_API}/AddService/${user.email}`);
+    queryFn: async () => {
+      return await axios.get(`${import.meta.env.VITE_API}/AddService/${user.email}`);
     },
   });
-
   const { mutate } = useMutation({
     mutationFn: async (id) => {
-      axios.delete(`${import.meta.env.VITE_API}/AddService/${id}`);
+      await axios.delete(`${import.meta.env.VITE_API}/AddService/${id}`);
     },
     onSuccess: () => {
-      QueryClient.invalidateQueries(["myPostedServices"]);
+      queryClient.invalidateQueries(["myPostedServices"]);
       toast.success("Service deleted successfully!");
     },
   });
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error: {error.message}</div>;
+
+
+
 
   const handelDelete = (id) => {
     mutate(id);
