@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useContext, useEffect, useState } from "react";
 import { toast } from "sonner";
 import UserContext from "../Context/AuthContext";
@@ -222,6 +223,13 @@ function ModalBooked({ item }) {
               />
             </form>
           )}
+
+<div className="modal-action">
+      <form method="dialog">
+        {/* if there is a button in form, it will close the modal */}
+        <button className="btn btn-error text-white">Cancel</button>
+      </form>
+    </div>
         </div>
       </div>
     </dialog>

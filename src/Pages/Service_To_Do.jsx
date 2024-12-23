@@ -6,19 +6,10 @@ import {
   TableHeader,
   TableRow,
 } from "keep-react";
-import {
-  Select,
-  SelectAction,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectValue,
-} from "keep-react";
 import axios from "axios";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { useContext, useState } from "react";
+import { useContext} from "react";
 import UserContext from "../Context/AuthContext";
 import SecureAxios from "../hook/SecureAxios";
 
@@ -101,30 +92,12 @@ function Service_To_Do() {
             <TableCell>{item.customer_name}</TableCell>
             <TableCell>
               {item?.status && (
-                // <Select
-                //   onValueChange={(value) => handelStatus(item._id, value)}
-                //   value={item.status||"pending"}
-                // >
-                //   <SelectAction className="w-[7rem]">
-                //     <SelectValue placeholder="Select status" />
-                //   </SelectAction>
-                //   <SelectContent>
-                //     <SelectGroup>
-                //       <SelectLabel>select status</SelectLabel>
-                //       <SelectItem value="pending">pending </SelectItem>
-                //       <SelectItem value="working">working</SelectItem>
-                //       <SelectItem value="completed">completed</SelectItem>
-                //     </SelectGroup>
-                //   </SelectContent>
-                // </Select>
-
                 <select
                   className="border p-2 rounded-md"
                   value={item.status}
                   onChange={(value) =>
                     handelStatus(item._id, value.target.value)
                   }
-                  id=""
                 >
                   <option value="pending">pending</option>
                   <option value="working">working</option>
