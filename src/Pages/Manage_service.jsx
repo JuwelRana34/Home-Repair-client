@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import SecureAxios from "../hook/SecureAxios";
 import { Button } from "keep-react";
 import { Link } from "react-router";
+import NotFound from "../Components/NotFound";
 function Manage_service() {
   const { user } = useContext(UserContext);
   const queryClient = useQueryClient();
@@ -82,8 +83,9 @@ function Manage_service() {
         {" "}
         Manage Services
       </h1>
-      <div className="grid grid-cols-1 my-10 gap-5  mx-auto md:grid-cols-2 ">
-        {resposdatas.length > 0 &&
+      <div className={`grid grid-cols-1 my-10 gap-5 mx-auto ${resposdatas.length > 0 && "md:grid-cols-2"}   `}>
+
+        {resposdatas.length === 0? <NotFound text={"Oops! you have not add any services yet!"}/> :
           resposdatas.map((item) => {
             return (
               <div key={item?._id} className="w-[90%]  mx-auto ">

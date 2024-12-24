@@ -38,7 +38,7 @@ function ServiceCard({service}) {
           />
           <span className="ml-2 text-gray-800 font-medium">
             name: {Provider_info.name} <br />
-            email: {Provider_info.email}
+            {/* email: {Provider_info.email} */}
           </span>
         </div>
         <p className=' mt-2 flex items-center gap-1 capitalize font-semibold text-md'> <IoLocationSharp /> area: {Service_Area} </p>

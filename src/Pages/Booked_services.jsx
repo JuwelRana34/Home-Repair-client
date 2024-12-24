@@ -4,6 +4,7 @@ import { toast } from "sonner";
 import { useContext } from 'react';
 import UserContext from '../Context/AuthContext';
 import SecureAxios from '../hook/SecureAxios';
+import NotFound from '../Components/NotFound';
 
 function Booked_services() {
   const { user } = useContext(UserContext);
@@ -18,6 +19,7 @@ function Booked_services() {
   return (
     <div className='md:px-8 mt-5'>
      <h1 className=' text-3xl py-5 mb-5 capitalize font-bold text-center text-gray-700'> my Booked services </h1>
+     {data?.data?.length === 0 ? <div> <NotFound text={"You have not booked any service yet !"} /></div>  :
     <Table >
     <TableHeader>
       <TableRow>
@@ -42,9 +44,7 @@ function Booked_services() {
       </TableRow>
     </TableHeader>
     <TableBody>
-      {data?.data?.length === 0 ?<>NO services booked yet!</>: <>
-      
-     
+    
       {data?.data?.map((item) => (
         <TableRow key={item._id}>
           <TableCell>
@@ -71,9 +71,10 @@ function Booked_services() {
         </TableRow>
       ))}
 
-</>}
+
     </TableBody>
   </Table>
+  }
     </div>
   )
 }

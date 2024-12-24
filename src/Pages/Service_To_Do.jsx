@@ -12,6 +12,7 @@ import { toast } from "sonner";
 import { useContext} from "react";
 import UserContext from "../Context/AuthContext";
 import SecureAxios from "../hook/SecureAxios";
+import NotFound from "../Components/NotFound";
 
 function Service_To_Do() {
   // const [status, setStatus] = useState('Pending')
@@ -52,6 +53,7 @@ function Service_To_Do() {
       
         Service To Do
       </h1>
+      {data.data.length === 0? <NotFound text={'Oops! you have no  to do services!'}/> : 
       <Table >
       <TableHeader>
         <TableRow>
@@ -75,6 +77,7 @@ function Service_To_Do() {
           </TableHead>
         </TableRow>
       </TableHeader>
+     
       <TableBody>
         {data.data.map((item) => (
           <TableRow key={item.id}>
@@ -122,6 +125,7 @@ function Service_To_Do() {
         ))}
       </TableBody>
     </Table>
+}
     </div>
     
   );
