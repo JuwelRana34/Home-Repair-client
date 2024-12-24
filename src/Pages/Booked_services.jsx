@@ -54,7 +54,20 @@ function Booked_services() {
           <TableCell>{item.price}</TableCell>
           <TableCell>{ new Date(item.service_taking_data).toLocaleDateString() }</TableCell>
           <TableCell>{item.Provider_email}</TableCell>
-          <TableCell>{item.status}</TableCell>
+          <TableCell >
+              <span className={`
+               font-semibold
+                ${item.status === 'Pending'? 'text-orange-500 bg-yellow-100 p-2 px-3 rounded-full' : 
+                  item.status === 'working'? 'text-green-500 bg-green-100 p-2 px-3 rounded-full' : 
+                  item.status === 'completed'? 'text-blue-500 bg-blue-100 p-2 px-3 rounded-full' : 
+                  'text-gray-500 ' 
+                }
+            `}>
+                {item.status}
+              </span>
+              
+              
+              </TableCell>
         </TableRow>
       ))}
 

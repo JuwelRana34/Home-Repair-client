@@ -47,7 +47,12 @@ function Service_To_Do() {
   if (isError) return toast.error("An error has occurred: " + error.message);
 
   return (
-    <Table >
+    <div className="container mx-auto">
+      <h1 className="text-2xl font-bold text-center my-5">
+      
+        Service To Do
+      </h1>
+      <Table >
       <TableHeader>
         <TableRow>
           <TableHead>
@@ -93,7 +98,15 @@ function Service_To_Do() {
             <TableCell>
               {item?.status && (
                 <select
-                  className="border p-2 rounded-md"
+                  className={`border  p-2 rounded-md
+                     ${
+                       item.status === "pending"
+                         ? "bg-yellow-100 text-orange-500"
+                         : item.status === "working"
+                         ? "bg-blue-100 text-blue-500"
+                         : "bg-green-100 text-green-500"
+                     }
+                    `}
                   value={item.status}
                   onChange={(value) =>
                     handelStatus(item._id, value.target.value)
@@ -109,6 +122,8 @@ function Service_To_Do() {
         ))}
       </TableBody>
     </Table>
+    </div>
+    
   );
 }
 

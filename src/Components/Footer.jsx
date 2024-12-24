@@ -26,7 +26,7 @@ function Footer() {
     <a className="link link-hover">Cookie policy</a>
   </nav>
 </footer>
-<footer className="footer container mx-auto bg-base-200 text-base-content border-base-300 border-t px-10 py-4">
+<footer className="footer container mx-auto text-base-content border-base-300 border-t px-10 py-4">
   <aside className="grid-flow-col items-center">
     <img className="w-16 " src={logo} alt=""  />
     <p>
@@ -49,7 +49,14 @@ function Footer() {
     </div>
   </nav>
 </footer>
+
+<footer className="footer border-t container mx-auto footer-center  text-base-content p-4">
+  <aside>
+    <p>Copyright © {new Date().getFullYear()} - All right reserved by Home repair Ltd.</p>
+  </aside>
+</footer>
     </div>
+    
    
   )
 }
