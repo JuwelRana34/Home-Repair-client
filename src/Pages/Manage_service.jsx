@@ -1,11 +1,10 @@
 import { MdDeleteForever } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
-import { useQueryClient, useMutation, useQuery } from "@tanstack/react-query";
-import { useContext } from "react";
+import { useQueryClient, useMutation} from "@tanstack/react-query";
+import { useContext, useEffect, useState } from "react";
 import UserContext from "../Context/AuthContext";
 import axios from "axios";
 import { toast } from "sonner";
-
 import SecureAxios from "../hook/SecureAxios";
 import { Button } from "keep-react";
 import { Link } from "react-router";
@@ -13,22 +12,22 @@ import NotFound from "../Components/NotFound";
 import Loading from "../Components/Loading";
 function Manage_service() {
   const { user } = useContext(UserContext);
+  const [resposdatas, setResposdatas] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const queryClient = useQueryClient();
 
-  const {
-    data: resposdatas,
-    isLoading,
-    isError,
-    error,
-  } = useQuery({
-    queryKey: ["myPostedServices"],
-    queryFn: async () => {
-      const response = await SecureAxios.get(
-        `${import.meta.env.VITE_API}/AddService/${user.email}`
-      );
-      return response.data;
-    },
-  });
+ 
+  useEffect(() => {
+    SecureAxios.get(`${import.meta.env.VITE_API}/AddService/${user.email}`).then(
+      (response) => {
+        setResposdatas(response.data);
+        setIsLoading(false);
+      }
+    ).catch((err) =>{
+       console.log(err)
+       setIsLoading(false)
+      });
+  }, [user.email]);
 
   const { mutate } = useMutation({
     mutationFn: async (id) => {
@@ -41,8 +40,7 @@ function Manage_service() {
   });
 
   if (isLoading) return <Loading/>
-  if (isError) return <div>Error: {error.message}</div>;
-
+ 
   const handleDelete = (id) => {
     toast.custom(
       (t) => (
@@ -84,10 +82,10 @@ function Manage_service() {
         {" "}
         Manage Services
       </h1>
-      <div className={`grid grid-cols-1 my-10 gap-5 mx-auto ${resposdatas.length > 0 && "md:grid-cols-2"}   `}>
+      <div className={`grid grid-cols-1 my-10 gap-5 mx-auto ${resposdatas?.length > 0 && "md:grid-cols-2"}   `}>
 
-        {resposdatas.length === 0? <NotFound text={"Oops! you have not add any services yet!"}/> :
-          resposdatas.map((item) => {
+        {resposdatas?.length === 0 ? <NotFound text={"Oops! you have not add any services yet!"}/> :
+          resposdatas?.map((item) => {
             return (
               <div key={item?._id} className="w-[90%]  mx-auto ">
                 <div className="card lg:flex-row md:h-[28rem] lg:h-[18rem] flex-grow bg-base-100 w-full shadow-xl">

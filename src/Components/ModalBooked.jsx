@@ -217,7 +217,7 @@ function ModalBooked({ item }) {
               </label>
 
               <input
-                className="border p-2 font-semibold rounded-md hover:cursor-pointer  w-full col-span-2 my-5"
+                className="border p-2 bg-blue-500 text-white font-semibold rounded-md hover:cursor-pointer  w-full col-span-2 my-5"
                 type="submit"
                 value={`${isPending ? "Booking service..." : "Book service"}`}
               />
