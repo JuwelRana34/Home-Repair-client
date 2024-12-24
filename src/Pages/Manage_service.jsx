@@ -7,6 +7,7 @@ import axios from "axios";
 import { toast } from "sonner";
 import ModalForm from "../Components/ModalForm";
 import SecureAxios from "../hook/SecureAxios";
+import { Button } from "keep-react";
 function Manage_service() {
   const { user } = useContext(UserContext);
   const [selectId, setSelectId] = useState(null);
@@ -33,11 +34,42 @@ function Manage_service() {
   if (isError) return <div>Error: {error.message}</div>;
 
 
+  const handleDelete = (id) => {
+    toast.custom(
+      (t) => (
+        <div className="p-4 bg-white rounded-lg shadow-lg">
+          <p>Are you sure you want to delete this item?</p>
+          <div className="flex gap-2 justify-end mt-2">
+            <Button
+              onClick={() => {
+                toast.dismiss(t);
 
+                mutate(id);
 
-  const handelDelete = (id) => {
-    mutate(id);
+                toast.success("service successfully deleted!");
+              }}
+              className="bg-green-500 text-white"
+            >
+              Confirm
+            </Button>
+            <Button
+              onClick={() => {
+                toast.dismiss(t);
+              }}
+              className="bg-red-500 text-white"
+            >
+              Cancel
+            </Button>
+          </div>
+        </div>
+      ),
+      {
+        duration: Infinity,
+      }
+    );
   };
+
+  
   const handelEdit = (item) => {
     setSelectId(item);
     document.getElementById("my_modal_1").showModal();
@@ -63,7 +95,7 @@ function Manage_service() {
 
                 <div className="card-actions h-10 justify-end items-center">
                   <button
-                    onClick={() => handelDelete(item._id)}
+                    onClick={() => handleDelete(item._id)}
                     className="badge badge-outline py-3 bg-rose-100 text-rose-600 font-semibold "
                   >
                     

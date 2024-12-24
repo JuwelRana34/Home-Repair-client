@@ -2,14 +2,14 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import UserContext from "../Context/AuthContext";
 import { toast } from "sonner";
-import axios from "axios";
+import SecureAxios from "../hook/SecureAxios";
 import { useMutation } from "@tanstack/react-query";
 function Add_service() {
   const { user } = useContext(UserContext);
   const { register, handleSubmit, reset } = useForm();
   const { isPending, isSuccess, isError, error, mutate } = useMutation({
     mutationFn: (service) => {
-      return axios.post(`${import.meta.env.VITE_API}/AddService`, service);
+      return SecureAxios.post(`${import.meta.env.VITE_API}/AddService`, service);
     },
   });
 

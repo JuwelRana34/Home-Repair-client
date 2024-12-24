@@ -1,23 +1,29 @@
-import axios from "axios"
+
 import { useEffect, useState } from "react"
-import { Link, useParams } from "react-router"
+import { useParams } from "react-router"
 import ModalBooked from "../Components/modalBooked"
+import SecureAxios from "../hook/SecureAxios"
+
+import { Button, Card, CardContent, CardDescription, CardHeader, CardTitle } from 'keep-react'
+import { IoLocationSharp } from "react-icons/io5";
+
 
 
 
 function ServiceDetails() {
     const [selectItem, setSelectItem]= useState(true)
     const [Details, setDetails]= useState({})
+    const [Loading, setLoading]= useState(true)
     const{id}= useParams()
-    console.log(id)
+  console.log(Details)
      useEffect(() =>{
       
-      axios.get(`${import.meta.env.VITE_API}/AddService/details/${id}`)
+      SecureAxios.get(`${import.meta.env.VITE_API}/AddService/details/${id}`)
       .then(({data}) => {
         setDetails(data)
-        // setLoading(false)
+        setLoading(false)
       }).catch((err) => {  
-        // setLoading(false)
+        setLoading(false)
         console.log(err)
       })
      },[id])
@@ -29,61 +35,57 @@ function ServiceDetails() {
     };
 
      console.log(Details)
-    // if(Loading) return <div>Loading...</div>
-    // if(!Details) return <div>Service not found</div>
+    if(Loading) return <div>Loading...</div>
+    if(!Details) return <div>Service not found</div>
   return (
     <div>
 
+  <h1 className="text-3xl font-bold text-center my-5 py-4">
+    About the service <span className="text-gray-900">&quot;{Details.Service_Name}&quot; </span> 
+  </h1>
+ <Card className=' md:flex md:p-4 my-1 gap-5 items-center md:max-w-[90%]  mx-auto  rounded-md shadow-md'>
+        
+      <CardHeader className='md:w-[50%]'>
+       <img className=' w-full rounded-md' src={Details?.Photo_url} alt="" />
+      </CardHeader>
 
-<div className="mt-5">
-      <div className="hero bg-gradient-to-t from-blue-200 to-white  mx-auto container min-h-screen">
-        <div className="hero-content w-full gap-5 items-start flex-col lg:flex-row">
-          <img
-            src={Details.Photo_url}
-            className="w-full md:w-[30%] rounded-lg shadow-2xl"
-          />
-          <div className="md:w-[70%]  md:px-10">
-            <h1 className=" text-4xl md:text-5xl bg-gradient-to-bl from-rose-600 to-orange-600 bg-clip-text text-transparent  font-bold">
-              {Details.Service_Name}
-            </h1>
-            <p className="text-gray-600 md:flex gap-2 items-center text-lg py-4">
-              {/* <img className="w-14" src={doc} alt="" /> */}
-              <h1 > <span className="font-bold text-xl"> Description : </span>  {Details.Description}</h1> 
-            </p>
+      <CardContent className=" md:w-[50%] space-y-5 p-4 flex-col gap-5">
+        <div className='space-y-2'>
+          <CardTitle className=' capitalize'>{Details?.Service_Name}</CardTitle>
+        <CardDescription className="text-justify" >
+         {Details?.Description}
+        </CardDescription>
+       
+        <p className=' capitalize py-2 font-semibold text-lg'> price: $ {Details?.price}</p>
 
-            <hr className=" border-gray-500" />
-           
-            <hr className=" border-gray-500" />
-            <div className="text-gray-600 py-4 flex items-center gap-3 text-lg font-semibold">
-              Price: ${Details.price}
-              {/* <Rating
-                count={rating}
-                className="flex text-sm"
-                initialValue={rating}
-                readonly
-              /> */}
-            </div>
-            <hr className=" border-gray-500" />
-           
-            <hr className=" border-gray-500" />
-            
-            <hr className=" border-gray-500 " />
-            <div className="my-4 grid grid-cols-3 md:flex space-x-2">
-             
-              <button
-                onClick={() => handelBookedService(Details)}
-                className="  py-2 px-3 rounded-md bg-gradient-to-r from-orange-500 to-yellow-500 font-semibold text-white "
-              >
-                Add to Favorite
-              </button>
-              
-            </div>
-          </div>
+        
+        <Button onClick={() => handelBookedService(Details)} className='bg-blue-500'>Book Now</Button>
+       
         </div>
-      </div>
+        
 
-      
-    </div>
+        <div className=' flex-col justify-end'>
+          <p className=' capitalize font-semibold text-xl'>Service Provider:</p>
+        <div className="flex items-center mt-4 md:mt-0 md:ml-auto">
+          <img
+            src={Details?.Provider_info.photo}
+            alt={Details?.Provider_info.name}
+            className="w-16 h-16 shadow-md ring-2 rounded-full"
+          />
+          <span className="ml-2 text-gray-800 font-medium">
+            name: {Details?.Provider_info.name} <br />
+            email: {Details?.Provider_info.email}
+          </span>
+        </div>
+        <p className=' mt-2 flex items-center gap-1 capitalize font-semibold text-md'> <IoLocationSharp /> Service area: {Details?.Service_Area} </p>
+        </div>
+        
+        
+      </CardContent>
+    </Card>
+  
+    
+  
 
     <ModalBooked item={selectItem}/>
         
