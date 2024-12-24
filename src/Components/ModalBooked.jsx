@@ -78,7 +78,7 @@ function ModalBooked({ item }) {
               className="gap-5 w-[80%]  mx-auto space-y-4"
             >
               <label>
-                <span className=" capitalize font-semibold text-gray-700">
+                <span className=" capitalize font-semibold text-gray-700 dark:text-metal-300">
                   service ID:
                 </span>
                 <input
@@ -92,7 +92,7 @@ function ModalBooked({ item }) {
               </label>
 
               <label>
-                <span className=" capitalize font-semibold text-gray-700">
+                <span className=" capitalize font-semibold text-gray-700 dark:text-metal-300">
                   service Name:
                 </span>
                 <input
@@ -106,7 +106,7 @@ function ModalBooked({ item }) {
               </label>
 
               <label>
-                <span className=" capitalize font-semibold text-gray-700">
+                <span className=" capitalize font-semibold text-gray-700 dark:text-metal-300">
                   service photo:
                 </span>
                 <input
@@ -120,7 +120,7 @@ function ModalBooked({ item }) {
               </label>
 
               <label>
-                <span className=" capitalize font-semibold text-gray-700">
+                <span className=" capitalize font-semibold text-gray-700 dark:text-metal-300">
                   Provider email:
                 </span>
                 <input
@@ -134,7 +134,7 @@ function ModalBooked({ item }) {
               </label>
 
               <label>
-                <span className=" capitalize font-semibold text-gray-700">
+                <span className=" capitalize font-semibold text-gray-700 dark:text-metal-300">
                   Provider name:
                 </span>
                 <input
@@ -150,7 +150,7 @@ function ModalBooked({ item }) {
               {/* myinfo  */}
 
               <label>
-                <span className=" capitalize font-semibold text-gray-700">
+                <span className=" capitalize font-semibold text-gray-700 dark:text-metal-300">
                   customer email:
                 </span>
                 <input
@@ -164,7 +164,7 @@ function ModalBooked({ item }) {
               </label>
 
               <label>
-                <span className=" capitalize font-semibold text-gray-700">
+                <span className=" capitalize font-semibold text-gray-700 dark:text-metal-300">
                   customer name:
                 </span>
                 <input
@@ -178,7 +178,7 @@ function ModalBooked({ item }) {
               </label>
 
               <label className="flex flex-col gap-2">
-                <span className=" capitalize font-semibold text-gray-700">
+                <span className=" capitalize font-semibold text-gray-700 dark:text-metal-300">
                   Service Taking Date:
                 </span>
 
@@ -190,7 +190,7 @@ function ModalBooked({ item }) {
               </label>
 
               <label>
-                <span className=" capitalize font-semibold text-gray-700">
+                <span className=" capitalize font-semibold text-gray-700 dark:text-metal-300">
                   Price:
                 </span>
                 <input
@@ -205,7 +205,7 @@ function ModalBooked({ item }) {
               </label>
 
               <label>
-                <span className=" capitalize font-semibold text-gray-700">
+                <span className=" capitalize font-semibold text-gray-700 dark:text-metal-300">
                   Special instruction:
                 </span>
 
@@ -217,7 +217,7 @@ function ModalBooked({ item }) {
               </label>
 
               <input
-                className="border p-2 bg-blue-500 text-white font-semibold rounded-md hover:cursor-pointer  w-full col-span-2 my-5"
+                className="border p-2 dark:bg-metal-800  bg-blue-500 text-white font-semibold rounded-md hover:cursor-pointer  w-full col-span-2 my-5"
                 type="submit"
                 value={`${isPending ? "Booking service..." : "Book service"}`}
               />
@@ -227,7 +227,7 @@ function ModalBooked({ item }) {
 <div className="modal-action">
       <form method="dialog">
         {/* if there is a button in form, it will close the modal */}
-        <button className="btn btn-error text-white">Cancel</button>
+        <button className="btn btn-error dark:bg-metal-700 text-white dark:border-metal-700">Cancel</button>
       </form>
     </div>
         </div>

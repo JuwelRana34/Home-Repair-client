@@ -48,7 +48,7 @@ function Add_service() {
 
   return (
     <div>
-      <h1 className="text-4xl mb-10 text-gray-700 text-center my-5 font-bold">
+      <h1 className="text-4xl mb-10 text-gray-700 dark:text-metal-300 text-center my-5 font-bold">
         Add Your Service
       </h1>
       <form
@@ -92,7 +92,7 @@ function Add_service() {
         />
 
         <input
-          className="border p-2 bg-gradient-to-tr from-orange-500 to-rose-500  text-white font-semibold rounded-md hover:cursor-pointer  w-full col-span-2 my-5"
+          className="border dark:bg-metal-800 bg-blue-500 p-2 text-white font-semibold rounded-md hover:cursor-pointer  w-full col-span-2 my-5"
           type="submit"
           value={`${isPending ? "Adding service..." : "Add service"}`}
         />

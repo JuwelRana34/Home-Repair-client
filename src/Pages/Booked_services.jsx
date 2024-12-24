@@ -19,7 +19,7 @@ function Booked_services() {
 
   return (
     <div className='md:px-8 mt-5'>
-     <h1 className=' text-3xl py-5 mb-5 capitalize font-bold text-center text-gray-700'> my Booked services </h1>
+     <h1 className=' text-3xl py-5 mb-5 capitalize font-bold text-center text-gray-700 dark:text-metal-300'> my Booked services </h1>
      {data?.data?.length === 0 ? <div> <NotFound text={"You have not booked any service yet !"} /></div>  :
     <Table >
     <TableHeader>
@@ -44,12 +44,12 @@ function Booked_services() {
         </TableHead>
       </TableRow>
     </TableHeader>
-    <TableBody>
+    <TableBody className='dark:bg-metal-800'>
     
       {data?.data?.map((item) => (
         <TableRow key={item._id}>
           <TableCell>
-            <div className="max-w-[250px] truncate"> <img className=' rounded-full w-16  h-16 object-cover object-center ' src={item.Photo_url}alt=""  /></div>
+            <div className="max-w-[250px] truncate"> <img className=' rounded-md w-16  h-16 object-cover object-center ' src={item.Photo_url}alt=""  /></div>
           </TableCell>
           <TableCell>{item.Service_Name}</TableCell>
           <TableCell>{item.price}</TableCell>

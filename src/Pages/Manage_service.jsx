@@ -1,6 +1,6 @@
 import { MdDeleteForever } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
-import { useQueryClient, useMutation} from "@tanstack/react-query";
+import { useQueryClient, useMutation } from "@tanstack/react-query";
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../Context/AuthContext";
 import axios from "axios";
@@ -16,16 +16,15 @@ function Manage_service() {
   const [isLoading, setIsLoading] = useState(true);
   const queryClient = useQueryClient();
 
- 
   useEffect(() => {
-    SecureAxios.get(`${import.meta.env.VITE_API}/AddService/${user.email}`).then(
-      (response) => {
+    SecureAxios.get(`${import.meta.env.VITE_API}/AddService/${user.email}`)
+      .then((response) => {
         setResposdatas(response.data);
         setIsLoading(false);
-      }
-    ).catch((err) =>{
-       console.log(err)
-       setIsLoading(false)
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsLoading(false);
       });
   }, [user.email]);
 
@@ -39,8 +38,8 @@ function Manage_service() {
     },
   });
 
-  if (isLoading) return <Loading/>
- 
+  if (isLoading) return <Loading />;
+
   const handleDelete = (id) => {
     toast.custom(
       (t) => (
@@ -78,17 +77,25 @@ function Manage_service() {
 
   return (
     <>
-      <h1 className="text-3xl py-10 text-gray-700 text-center font-bold">
+      <h1 className="text-3xl py-10 text-gray-700 dark:text-metal-300 text-center font-bold">
         {" "}
         Manage Services
       </h1>
-      <div className={`grid grid-cols-1 my-10 gap-5 mx-auto ${resposdatas?.length > 0 && "md:grid-cols-2"}   `}>
-
-        {resposdatas?.length === 0 ? <NotFound text={"Oops! you have not add any services yet!"}/> :
+      <div
+        className={`grid grid-cols-1 my-10 gap-5 mx-auto ${
+          resposdatas?.length > 0 && "md:grid-cols-2"
+        }   `}
+      >
+        {resposdatas?.length === 0 ? (
+          <NotFound text={"Oops! you have not add any services yet!"} />
+        ) : (
           resposdatas?.map((item) => {
             return (
-              <div key={item?._id} className="w-[90%]  mx-auto ">
-                <div className="card lg:flex-row md:h-[28rem] lg:h-[18rem] flex-grow bg-base-100 w-full shadow-xl">
+              <div
+                key={item?._id}
+                className="w-[90%]  mx-auto dark:bg-metal-800 rounded-md "
+              >
+                <div className="card dark:bg-metal-800 lg:flex-row md:h-[28rem] lg:h-[18rem] flex-grow bg-base-100 w-full shadow-xl">
                   <figure className="p-2">
                     <img
                       className="w-full rounded-md h-full object-cover object-center"
@@ -110,14 +117,13 @@ function Manage_service() {
                     <div className="card-actions h-10 justify-end items-center">
                       <button
                         onClick={() => handleDelete(item._id)}
-                        className="badge badge-outline py-3 bg-rose-100 text-rose-600 font-semibold "
+                        className="badge badge-outline py-3 bg-rose-100 text-rose-600 font-semibold dark:bg-metal-800 dark:text-metal-300 dark:hover:text-metal-25"
                       >
                         <MdDeleteForever /> Delete{" "}
                       </button>
                       <Link
                         to={`/UpdateService/${item._id}`}
-                        // onClick={()=>handelEdit(item)}
-                        className="badge badge-outline py-3 bg-yellow-100 text-orange-500 font-semibold "
+                        className="badge badge-outline py-3 bg-yellow-100 text-orange-500 font-semibold dark:bg-metal-800 dark:text-metal-300 dark:hover:text-metal-25"
                       >
                         <FaRegEdit /> edit
                       </Link>
@@ -126,7 +132,8 @@ function Manage_service() {
                 </div>
               </div>
             );
-          })}
+          })
+        )}
       </div>
     </>
   );

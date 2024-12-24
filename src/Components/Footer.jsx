@@ -2,7 +2,10 @@ import { FaFacebook, FaLinkedin } from "react-icons/fa"
 import { IoLogoGithub } from "react-icons/io"
 import { Link } from "react-router"
 import logo from "../assets/mechanic.gif"
+import ThemeContext from "../Context/ThemeProvider"
+import { useContext } from "react"
 function Footer() {
+  const {theme}= useContext(ThemeContext)
   return (
     <div className="mt-10">
  <footer className="footer container mx-auto text-base-content p-10">
@@ -38,13 +41,13 @@ function Footer() {
   <nav className="md:place-self-center md:justify-self-end">
     <div className="grid grid-flow-col gap-4">
     <Link to='https://www.facebook.com/juwel34/' target="_blank">
-        <FaFacebook className={` hover:scale-125 transition-all text-3xl text-blue-600   `}/>
+        <FaFacebook className={` hover:scale-125 transition-all text-3xl text-blue-600  ${theme ==="dark" && "text-gray-300"} `}/>
       </Link>
       <Link to= "https://www.linkedin.com/in/md-juwel-rana-14b563204/" target="_blank">
-      <FaLinkedin className={` hover:scale-125 transition-all text-3xl text-blue-800  `}/>
+      <FaLinkedin className={` hover:scale-125 transition-all text-3xl text-blue-800 ${theme ==="dark" && "text-gray-300"}  `}/>
       </Link>
       <Link to="https://github.com/JuwelRana34" target="_blank">
-        <IoLogoGithub className={` hover:scale-125 transition-all text-3xl text-gray-900   `}/>
+        <IoLogoGithub className={` hover:scale-125 transition-all text-3xl text-gray-900 ${theme === "dark" && "text-gray-300"}   `}/>
       </Link>
     </div>
   </nav>

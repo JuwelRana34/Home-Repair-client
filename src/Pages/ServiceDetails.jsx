@@ -41,9 +41,9 @@ function ServiceDetails() {
     <div>
 
   <h1 className="text-3xl font-bold text-center my-5 py-4">
-    About the service <span className="text-gray-900">&quot;{Details.Service_Name}&quot; </span> 
+    About the service <span className="text-gray-900 dark:text-metal-300">&quot;{Details.Service_Name}&quot; </span> 
   </h1>
- <Card className=' md:flex md:p-4 my-1 gap-5 items-center md:max-w-[90%]  mx-auto  rounded-md shadow-md'>
+ <Card className=' md:flex md:p-4 my-1 gap-5 items-center md:max-w-[90%]  mx-auto dark:bg-metal-800 dark:border-metal-800  rounded-md shadow-md'>
         
       <CardHeader className='md:w-[50%]'>
        <img className=' w-full rounded-md' src={Details?.Photo_url} alt="" />
@@ -51,8 +51,8 @@ function ServiceDetails() {
 
       <CardContent className=" md:w-[50%] space-y-5 p-4 flex-col gap-5">
         <div className='space-y-2'>
-          <CardTitle className=' text-3xl font-bold capitalize'>Service info: </CardTitle>
-          <CardTitle className=' capitalize'>{Details?.Service_Name}</CardTitle>
+          <CardTitle className='dark:text-metal-300 text-3xl font-bold capitalize'>Service info: </CardTitle>
+          <CardTitle className=' dark:text-metal-300 capitalize'>{Details?.Service_Name}</CardTitle>
         <CardDescription className="text-justify" >
          {Details?.Description}
         </CardDescription>
@@ -60,7 +60,7 @@ function ServiceDetails() {
         <p className=' capitalize py-2 font-semibold text-lg'> price: $ {Details?.price}</p>
 
         
-        <Button onClick={() => handelBookedService(Details)} className='bg-blue-500'>Book Now</Button>
+        <Button onClick={() => handelBookedService(Details)} className='bg-blue-500 dark:bg-metal-700 dark:text-gray-300'>Book Now</Button>
        
         </div>
         
@@ -73,7 +73,7 @@ function ServiceDetails() {
             alt={Details?.Provider_info.name}
             className="w-16 h-16 shadow-md ring-2 rounded-full"
           />
-          <span className="ml-2 text-gray-800 font-semibold">
+          <span className="ml-2 dark:text-metal-300 text-gray-800 font-semibold">
             name: {Details?.Provider_info.name} <br />
             
           </span>

@@ -1,9 +1,9 @@
 import { Link, NavLink, useLocation, useNavigate } from "react-router"
 import logo from "../assets/mechanic.gif"
-import { useContext, useEffect} from "react"
+import { useContext, useEffect, useState} from "react"
 import UserContext from "../Context/AuthContext"
 import { Button, toast } from "keep-react"
-
+import {SwitchComponent} from "./ToogleSwtich"
 function Navbar() {
    const {pathname}= useLocation()
    const {user ,LogOut ,setUser,setIsloading} = useContext(UserContext)
@@ -37,6 +37,12 @@ const navigate = useNavigate();
      document.title = DynamicTitle[pathname] || "Home repair";
    }, [pathname]);
 
+    const [selectedValue, setSelectedValue] = useState("");
+    const handleChange = (value) => {
+      setSelectedValue(value);
+      navigate(value);
+    }
+
     const navitems = <>
      <NavLink to={'/'}>
      <li><a>Home</a></li>
@@ -44,20 +50,23 @@ const navigate = useNavigate();
      <NavLink to={'/services'}>
      <li ><a>Services</a></li>
      </NavLink>
-    
 
-     {user && <div className="dropdown dropdown-end">
-        <div tabIndex={0} role="button" className={` p-2 flex items-center rounded-btn `}>Dashboard</div>
-        <ul
-          tabIndex={0}
-          className="menu  z-[500] dropdown-content text-black bg-base-100 border rounded-lg mt-4 w-52 p-2 shadow">
-          <Link to={'/add-service'}>Add Service</Link>
-          <Link to={'/manage-service'}>Manage Service</Link>
-          <Link to={'/booked-services'}>Booked-Services</Link>
-        <Link to={'/service-To-Do'}>Service-To-Do</Link>
-        </ul>
-      </div> } 
-     
+{user && (
+        <select 
+          value={selectedValue} // Set the value based on state
+          onChange={(e)=>handleChange(e.target.value)} // Set the value based on the selected option
+          className="p-2 bg-gray-100 dark:bg-metal-700 dark:border-metal-700 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-metal-500 dark:text-metal-100"
+        >
+          <option value="" selected disabled>Dashboard</option>
+          <option value="/add-service">Add Service</option>
+          <option value="/manage-service">Manage Service</option>
+          <option value="/booked-services">Booked Services</option>
+          <option value="/service-To-Do">Service To-Do</option>
+         
+        </select>
+      )}
+
+<SwitchComponent/>
   </>
 
 
@@ -82,7 +91,7 @@ const navigate = useNavigate();
       </div>
       <ul
         tabIndex={0}
-        className="menu font-semibold menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+        className="menu font-semibold menu-sm dropdown-content space-y-2 bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
        {navitems}
       </ul>
     </div>
@@ -92,7 +101,7 @@ const navigate = useNavigate();
     </div>
   </div>
   <div className="navbar-center hidden lg:flex">
-    <ul className="menu font-semibold menu-horizontal px-1">
+    <ul className="menu flex items-center space-x-4 font-semibold menu-horizontal px-1">
      {navitems}
     </ul>
   </div>

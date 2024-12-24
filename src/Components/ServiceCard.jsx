@@ -15,7 +15,7 @@ function ServiceCard({service}) {
 
       <CardContent className=" md:w-[50%] space-y-5 p-4 flex-col gap-5">
         <div className='space-y-2'>
-          <CardTitle className=' capitalize'>{Service_Name}</CardTitle>
+          <CardTitle className=' dark:text-metal-300 capitalize'>{Service_Name}</CardTitle>
         <CardDescription >
          {Description.substring(0, 100)}...
         </CardDescription>
@@ -23,7 +23,7 @@ function ServiceCard({service}) {
         <p className=' capitalize py-2 font-semibold text-md'> price: $ {price}</p>
 
         <Link to={`/serviceDetails/${_id}`}>
-        <Button className='bg-blue-500'>View Details</Button>
+        <Button className='bg-blue-500 dark:bg-metal-700 dark:text-gray-300'>View Details</Button>
         </Link>
         </div>
         
@@ -36,9 +36,9 @@ function ServiceCard({service}) {
             alt={Provider_info.name}
             className="w-16 h-16 shadow-md ring-2 rounded-full"
           />
-          <span className="ml-2 text-gray-800 font-medium">
+          <span className="ml-2 dark:text-metal-300 text-gray-800 font-medium">
             name: {Provider_info.name} <br />
-            {/* email: {Provider_info.email} */}
+            
           </span>
         </div>
         <p className=' mt-2 flex items-center gap-1 capitalize font-semibold text-md'> <IoLocationSharp /> area: {Service_Area} </p>
