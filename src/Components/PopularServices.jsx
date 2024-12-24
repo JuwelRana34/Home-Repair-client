@@ -15,7 +15,11 @@ function PopularServices() {
 
 
   return (
-    <div className='grid grid-cols-1 md:grid-cols-2 gap-5 p-5'>
+    <>
+    <h1 className="container mx-auto text-3xl font-bold  mt-5 py-4">
+      Popular Services
+    </h1>
+<div className='grid  grid-cols-1 md:grid-cols-2 gap-5 p-5'>
        
         {data?.map((service) => {
            return <Card key={service._id} className=' md:flex md:p-4 my-1 gap-5 items-start md:max-w-[90%]  mx-auto  rounded-md shadow-md'>
@@ -58,8 +62,18 @@ function PopularServices() {
         </CardContent>
       </Card>
         })}
-        
+
     </div>
+<div className="text-center my-5 ">
+  <Link to={'/services'} className=" py-2 px-4  bg-blue-500 text-white rounded-md hover:bg-blue-600">
+        Show All
+        
+         </Link>
+</div>
+    
+
+    </>
+    
   )
 }
 

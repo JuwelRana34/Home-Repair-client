@@ -48,7 +48,7 @@ function ModalBooked({ item }) {
       price: price.value,
       special_instruction: Special_instruction.value,
       service_taking_data: date,
-      status: "Pending",
+      status: "pending",
     });
 
     e.target.reset();

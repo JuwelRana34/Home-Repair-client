@@ -6,14 +6,14 @@ import SecureAxios from "../hook/SecureAxios"
 
 import { Button, Card, CardContent, CardDescription, CardHeader, CardTitle } from 'keep-react'
 import { IoLocationSharp } from "react-icons/io5";
-
+import Loading from "../Components/Loading"
 
 
 
 function ServiceDetails() {
     const [selectItem, setSelectItem]= useState(true)
     const [Details, setDetails]= useState({})
-    const [Loading, setLoading]= useState(true)
+    const [isLoading, setLoading]= useState(true)
     const{id}= useParams()
   console.log(Details)
      useEffect(() =>{
@@ -35,7 +35,7 @@ function ServiceDetails() {
     };
 
      console.log(Details)
-    if(Loading) return <div>Loading...</div>
+    if(isLoading) return <Loading/>
     if(!Details) return <div>Service not found</div>
   return (
     <div>
@@ -51,6 +51,7 @@ function ServiceDetails() {
 
       <CardContent className=" md:w-[50%] space-y-5 p-4 flex-col gap-5">
         <div className='space-y-2'>
+          <CardTitle className=' text-3xl font-bold capitalize'>Service info: </CardTitle>
           <CardTitle className=' capitalize'>{Details?.Service_Name}</CardTitle>
         <CardDescription className="text-justify" >
          {Details?.Description}
@@ -72,9 +73,9 @@ function ServiceDetails() {
             alt={Details?.Provider_info.name}
             className="w-16 h-16 shadow-md ring-2 rounded-full"
           />
-          <span className="ml-2 text-gray-800 font-medium">
+          <span className="ml-2 text-gray-800 font-semibold">
             name: {Details?.Provider_info.name} <br />
-            email: {Details?.Provider_info.email}
+            
           </span>
         </div>
         <p className=' mt-2 flex items-center gap-1 capitalize font-semibold text-md'> <IoLocationSharp /> Service area: {Details?.Service_Area} </p>

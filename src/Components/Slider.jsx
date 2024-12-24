@@ -1,66 +1,84 @@
-import autoPlay from 'embla-carousel-autoplay'
+import autoPlay from "embla-carousel-autoplay";
 import {
   Carousel,
   CarouselControl,
   CarouselIndicators,
   CarouselItem,
   CarouselSlides,
-} from 'keep-react'
-import { motion } from "motion/react"
-import mag1 from '../assets/mechanic.gif'
+} from "keep-react";
+import { motion } from "motion/react";
+import { Link } from "react-router";
+import mag1 from "../assets/img1.jpg";
+import img2 from "../assets/img2.avif";
+import img3 from "../assets/img5.avif";
+import img4 from "../assets/img7.avif";
 
 function Slider() {
-     
   const slides = [
-      {
-      id: 1,  
-      img: "https://images.unsplash.com/photo-1505798577917-a65157d3320a?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGhvbWUlMjByZXBhaXJ8ZW58MHx8MHx8fDA%3D",
-      text: "1st Worker",
-      },
-      {
-      id: 2,  
-      img:'https://media.istockphoto.com/id/1372596908/photo/busy-mom-spends-time-with-cheerful-daughter-engages-her-to-help-together-they-painting-the.jpg?s=612x612&w=0&k=20&c=Qv-j5BEnlWxRZZmPykFONmLiePe3w6FDWiYwBGUVRio=',
-      text: "1st Worker",
-      },
-      {
-      id: 3,  
+    {
+      id: 1,
       img: mag1,
-      text: "1st Worker",
-      },
-      {
-      id: 4,  
-      img: mag1,
-      text: "1st Worker",
-      }
-  ]
+      text: "Your Home, Our Priority",
+    },
+    {
+      id: 2,
+      img: img2,
+      text: "Quality Repairs, Hassle-Free Service",
+    },
+    {
+      id: 3,
+      img: img3,
+      text: "Fixing Homes, Building Trust",
+    },
+    {
+      id: 4,
+      img: img4,
+      text: "Expert Repairs for Every Corner of Your Home",
+    },
+  ];
 
   return (
-
-    <Carousel className=' container mx-auto mt-5 ' options={{ loop: true }} plugins={[autoPlay()]}>
+    <Carousel
+      className=" container mx-auto mt-5 "
+      options={{ loop: true }}
+      plugins={[autoPlay()]}
+    >
       <CarouselSlides>
         {slides.map((slide) => (
           <CarouselItem key={slide.id}>
-            <div style={{background:`linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${slide.img})`, backgroundRepeat: "no-repeat" , backgroundPosition:"center", backgroundSize: "cover" }} className="flex bg-cover items-center justify-center rounded-xl border border-metal-100 bg-metal-50 h-96 dark:border-metal-900 dark:bg-metal-900">
-              <motion.h1 initial={{Y: -4 }} animate={{ Y: 1 ,transition: { duration: 1 }}} className="text-heading-1 font-medium text-white dark:text-white">{slide.text}</motion.h1>
+            <div
+              style={{
+                background: `linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${slide.img})`,
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+              }}
+              className="flex bg-cover items-center justify-center rounded-xl border border-metal-100 bg-metal-50 h-96 dark:border-metal-900 dark:bg-metal-900"
+            >
+              <div className="text-center space-y-4">
+                <motion.h1 className=" px-4 text-2xl md:text-5xl mb-5 font-medium text-white dark:text-white">
+                  {slide.text}
+                </motion.h1>
+
+                <Link
+                  to={"/services"}
+                  className=" py-2 px-3 bg-green-500/90 t-5 text-white rounded-md"
+                >
+                  {" "}
+                  Explore Now
+                </Link>
+              </div>
             </div>
           </CarouselItem>
         ))}
       </CarouselSlides>
-      <div className=' flex justify-center'>
-
-        <CarouselControl className='flex text-orange-500 justify-items-center'>
-        {/* <CarouselButtons>
-          <CarouselPrevButton />
-          <CarouselNextButton />
-        </CarouselButtons> */}
-        <CarouselIndicators />
-      </CarouselControl>
+      <div className=" flex justify-center">
+        <CarouselControl className="flex text-orange-500 justify-items-center">
+          <CarouselIndicators />
+        </CarouselControl>
       </div>
-      
     </Carousel>
-
-
-  )
+  );
 }
 
-export default Slider
+export default Slider;

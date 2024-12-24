@@ -13,6 +13,7 @@ import { useContext} from "react";
 import UserContext from "../Context/AuthContext";
 import SecureAxios from "../hook/SecureAxios";
 import NotFound from "../Components/NotFound";
+import Loading from "../Components/Loading";
 
 function Service_To_Do() {
   // const [status, setStatus] = useState('Pending')
@@ -43,7 +44,7 @@ function Service_To_Do() {
     mutate({ id, newStatus });
   };
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loading/>
 
   if (isError) return toast.error("An error has occurred: " + error.message);
 

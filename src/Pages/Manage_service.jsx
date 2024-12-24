@@ -10,6 +10,7 @@ import SecureAxios from "../hook/SecureAxios";
 import { Button } from "keep-react";
 import { Link } from "react-router";
 import NotFound from "../Components/NotFound";
+import Loading from "../Components/Loading";
 function Manage_service() {
   const { user } = useContext(UserContext);
   const queryClient = useQueryClient();
@@ -39,7 +40,7 @@ function Manage_service() {
     },
   });
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loading/>
   if (isError) return <div>Error: {error.message}</div>;
 
   const handleDelete = (id) => {

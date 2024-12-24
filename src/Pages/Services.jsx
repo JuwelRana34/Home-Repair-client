@@ -2,12 +2,13 @@ import axios from "axios";
 import ServiceCard from "../Components/ServiceCard"
 import { toast } from "sonner";
 import { useEffect, useState } from "react";
+import Loading from "../Components/Loading";
 
 
 function Services() {
   const [data, setData] = useState([])
   const [search , setSearch]= useState('')
-  const [loading, setLoading] = useState(true)
+  const [isLoading, setLoading] = useState(true)
 
   
   useEffect(() => {
@@ -28,7 +29,7 @@ function Services() {
   allServices()
   },[search])
   
-  if(loading) return <div>Loading.....</div>
+  if(isLoading) return <Loading/>
 
 
   return (

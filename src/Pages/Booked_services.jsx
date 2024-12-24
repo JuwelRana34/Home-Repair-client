@@ -5,6 +5,7 @@ import { useContext } from 'react';
 import UserContext from '../Context/AuthContext';
 import SecureAxios from '../hook/SecureAxios';
 import NotFound from '../Components/NotFound';
+import Loading from '../Components/Loading';
 
 function Booked_services() {
   const { user } = useContext(UserContext);
@@ -12,7 +13,7 @@ function Booked_services() {
     return  SecureAxios.get(`${import.meta.env.VITE_API}/booked_service/${user?.email}`)
   } });
 
-  if(isLoading) return <div>Loading...</div>
+  if(isLoading) return <Loading/>
 
   if(isError) return toast.error('An error has occurred: ' + error.message)
 
@@ -57,7 +58,7 @@ function Booked_services() {
           <TableCell >
               <span className={`
                font-semibold
-                ${item.status === 'Pending'? 'text-orange-500 bg-yellow-100 p-2 px-3 rounded-full' : 
+                ${item.status === 'pending'? 'text-orange-500 bg-yellow-100 p-2 px-3 rounded-full' : 
                   item.status === 'working'? 'text-green-500 bg-green-100 p-2 px-3 rounded-full' : 
                   item.status === 'completed'? 'text-blue-500 bg-blue-100 p-2 px-3 rounded-full' : 
                   'text-gray-500 ' 

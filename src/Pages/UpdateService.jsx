@@ -3,6 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router";
 import SecureAxios from "../hook/SecureAxios";
+import Loading from "../Components/Loading";
 
 function UpdateService() {
   const { id } = useParams();
@@ -54,7 +55,7 @@ function UpdateService() {
   };
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Loading/>
   }
 
   if (isError) {
@@ -113,7 +114,7 @@ function UpdateService() {
             />
 
             <input
-              className="border p-2 font-semibold rounded-md hover:cursor-pointer  w-full col-span-2 my-5"
+              className="border p-2 font-semibold bg-blue-500 text-white rounded-md hover:cursor-pointer  w-full col-span-2 my-5"
               type="submit"
               value={`${isPending ? "updating service..." : "update service"}`}
             />
