@@ -4,6 +4,7 @@ import { useContext, useEffect, useState} from "react"
 import UserContext from "../Context/AuthContext"
 import { Button, toast } from "keep-react"
 import {SwitchComponent} from "./ToogleSwtich"
+
 function Navbar() {
    const {pathname}= useLocation()
    const {user ,LogOut ,setUser,setIsloading} = useContext(UserContext)
@@ -50,12 +51,13 @@ const navigate = useNavigate();
      <NavLink to={'/services'}>
      <li ><a>Services</a></li>
      </NavLink>
+    
 
 {user && (
         <select 
           value={selectedValue} // Set the value based on state
           onChange={(e)=>handleChange(e.target.value)} // Set the value based on the selected option
-          className="p-2 bg-gray-100 dark:bg-metal-700 dark:border-metal-700 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-metal-500 dark:text-metal-100"
+          className="p-2  dark:bg-metal-700 dark:border-metal-700 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-metal-500 dark:text-metal-100"
         >
           <option value="" selected disabled>Dashboard</option>
           <option value="/add-service">Add Service</option>
@@ -96,8 +98,8 @@ const navigate = useNavigate();
       </ul>
     </div>
     <div className="flex items-center">
-      <img src={logo} className=" w-12 md:w-16" alt="Home_repair"  />
-    <Link to={'/'} className="btn btn-ghost  md:text-xl font-bold">Home repair</Link>
+      <img src={logo} className=" dark:rounded-lg w-12 md:w-16" alt="Home_repair"  />
+    <Link to={'/'} className="btn btn-ghost dark:text-metal-300 text-metal-800 md:text-3xl font-bold">Home repair</Link>
     </div>
   </div>
   <div className="navbar-center hidden lg:flex">

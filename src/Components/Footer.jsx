@@ -47,7 +47,7 @@ function Footer() {
       <FaLinkedin className={` hover:scale-125 transition-all text-3xl text-blue-800 ${theme ==="dark" && "text-gray-300"}  `}/>
       </Link>
       <Link to="https://github.com/JuwelRana34" target="_blank">
-        <IoLogoGithub className={` hover:scale-125 transition-all text-3xl text-gray-900 ${theme === "dark" && "text-gray-300"}   `}/>
+        <IoLogoGithub className={` hover:scale-125 transition-all text-3xl text-gray-300 ${theme !== "dark" && "text-gray-900"}   `}/>
       </Link>
     </div>
   </nav>

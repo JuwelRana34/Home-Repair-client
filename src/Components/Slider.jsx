@@ -56,17 +56,26 @@ function Slider() {
               className="flex bg-cover items-center justify-center rounded-xl border border-metal-100 bg-metal-50 h-96 dark:border-metal-900 dark:bg-metal-900"
             >
               <div className="text-center space-y-4">
-                <motion.h1 className=" px-4 text-2xl md:text-5xl mb-5 font-medium text-white dark:text-white">
+                <motion.h1
+                  initial={{ y: 40, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 1, ease: "easeInOut" }}
+                  className=" px-4 text-2xl md:text-5xl mb-5 font-medium text-white dark:text-white"
+                >
                   {slide.text}
                 </motion.h1>
-
-                <Link
-                  to={"/services"}
-                  className=" py-2 px-3 bg-green-500/90 t-5 text-white rounded-md"
+                <motion.div
+                  initial={{ y: 40, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 1, ease: "easeInOut", delay: 0.2 }}
                 >
-                  {" "}
-                  Explore Now
-                </Link>
+                  <Link
+                    to={"/services"}
+                    className=" py-2 px-3 bg-green-500/90 t-5 text-white rounded-md"
+                  >
+                    Explore Now
+                  </Link>
+                </motion.div>
               </div>
             </div>
           </CarouselItem>
