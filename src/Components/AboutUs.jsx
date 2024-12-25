@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 function AboutUs() {
   return (
     <div>
-      <div className="md:flex overflow-hidden  dark:bg-metal-800 rounded-md  justify-center gap-5 my-5">
+      <div className="md:flex overflow-hidden pt-12 dark:bg-metal-800 rounded-md  justify-center gap-5 my-5">
         <motion.div
          initial={{ x: -100, opacity: 0 }}
          whileInView={{ x: 0, opacity: 1 }}
