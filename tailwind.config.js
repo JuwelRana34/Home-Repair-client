@@ -7,7 +7,11 @@ const config = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        berkshire: ["Berkshire Swash", 'serif'],
+      },
+    },
   },
   plugins: [
     // eslint-disable-next-line no-undef

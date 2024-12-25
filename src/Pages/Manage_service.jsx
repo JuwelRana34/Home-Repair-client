@@ -103,7 +103,7 @@ function Manage_service() {
                       alt="Shoes"
                     />
                   </figure>
-                  <div className="card-body">
+                  <div className="card-body  ">
                     <h2 className="card-title capitalize">
                       {item.Service_Name}
                     </h2>
@@ -114,7 +114,7 @@ function Manage_service() {
                       Price: $ {item.price}{" "}
                     </span>
 
-                    <div className="card-actions h-10 justify-end items-center">
+                    <div className="card-actions  h-10 justify-end items-center">
                       <button
                         onClick={() => handleDelete(item._id)}
                         className="badge badge-outline py-3 bg-rose-100 text-rose-600 font-semibold dark:bg-metal-800 dark:text-metal-300 dark:hover:text-metal-25"

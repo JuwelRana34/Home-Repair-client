@@ -34,7 +34,7 @@ function PopularServices() {
       <h1 className="container mx-auto text-3xl font-bold  mt-5 py-4">
         Popular Services
       </h1>
-      <div className="grid  grid-cols-1 lg:grid-cols-2 gap-5 p-5">
+      <div className="grid container mx-auto  grid-cols-1 lg:grid-cols-2 gap-5 p-5">
         {data?.map((service, index) => (
           <motion.div
             key={service._id}

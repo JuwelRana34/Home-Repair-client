@@ -32,8 +32,8 @@ function Footer() {
 <footer className="footer container mx-auto text-base-content border-base-300 border-t px-10 py-4">
   <aside className="grid-flow-col items-center">
     <img className="w-16 " src={logo} alt=""  />
-    <p>
-      HOME REPAIR
+    <p >
+      <span className="  font-bold font-berkshire text-xl md:text-2xl "> HOME REPAIR</span> 
       <br />
       Providing Services 2021
     </p>

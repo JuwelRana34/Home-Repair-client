@@ -77,7 +77,7 @@ const navigate = useNavigate();
     <div className="navbar container mx-auto py-4 bg-base-100">
   <div className="navbar-start">
     <div className="dropdown">
-      <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+      <div tabIndex={0} role="button" className="btn p-2 btn-ghost lg:hidden">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-5 w-5"
@@ -99,7 +99,7 @@ const navigate = useNavigate();
     </div>
     <div className="flex items-center">
       <img src={logo} className=" dark:rounded-lg w-12 md:w-16" alt="Home_repair"  />
-    <Link to={'/'} className="btn btn-ghost dark:text-metal-300 text-metal-800 md:text-3xl font-bold">Home repair</Link>
+    <Link to={'/'} className="btn text-green-500 text-xl btn-ghost p-2 dark:text-metal-300 md:text-3xl font-bold font-berkshire">Home repair</Link>
     </div>
   </div>
   <div className="navbar-center hidden lg:flex">
@@ -112,7 +112,7 @@ const navigate = useNavigate();
       <div className="flex items-center space-x-2">
         
         <img className=" rounded-full h-12  shadow-lg w-12" src={user.photoURL} alt=""  />
-        <Button  onClick={handleLogout} className="bg-rose-500">LogOut</Button>
+        <Button  onClick={handleLogout} className="bg-rose-500 px-2 ">LogOut</Button>
       </div>
     </> : <>
     <Link to={'/LoginPage'} className="btn">Login</Link>

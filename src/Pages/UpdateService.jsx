@@ -1,13 +1,15 @@
 import { toast } from "sonner";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router";
 import SecureAxios from "../hook/SecureAxios";
 import Loading from "../Components/Loading";
+import { useContext } from "react";
+import  UserContext  from "../Context/AuthContext";
 
 function UpdateService() {
   const { id } = useParams();
   const Navigate = useNavigate();
+  const {user} = useContext(UserContext);
 
   const { data, isLoading } = useQuery({
     queryKey: ["myPostedServices"],
@@ -21,14 +23,16 @@ function UpdateService() {
   const queryClient = useQueryClient();
   const { mutate, isError, error, isPending } = useMutation({
     mutationFn: async (data) => {
-      axios.patch(`${import.meta.env.VITE_API}/AddService/${id}`, data);
+      SecureAxios.patch(`${import.meta.env.VITE_API}/AddService/${id}/${user.email}`, data)
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["myPostedServices"]);
       Navigate("/manage-service");
-      toast.success("Service updated successfully!");
+      toast.success("Service updated successfully!");     
     },
   });
+
+
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -60,7 +64,7 @@ function UpdateService() {
 
   if (isError) {
     console.log(error.message);
-    toast.error("Failed to add service");
+    toast.error("Failed to update service");
   }
   return (
     <div>
