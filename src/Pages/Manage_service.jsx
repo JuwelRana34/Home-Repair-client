@@ -33,7 +33,7 @@ function Manage_service() {
       await axios.delete(`${import.meta.env.VITE_API}/AddService/${id}`);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(["myPostedServices"]);
+      queryClient.invalidateQueries(["myPostedServices",user.email]);
     },
   });
 

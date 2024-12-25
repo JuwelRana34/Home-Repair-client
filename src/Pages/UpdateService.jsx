@@ -1,20 +1,27 @@
 import { toast } from "sonner";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router";
 import SecureAxios from "../hook/SecureAxios";
 import Loading from "../Components/Loading";
+import { useEffect, useState } from "react";
 function UpdateService() {
   const { id } = useParams();
   const Navigate = useNavigate();
+  const [data,  setData] = useState([]);
+  const [isLoading,  setIsLoading] = useState(true);
+  
+  useEffect(()=>{
+    SecureAxios.get(
+      `${import.meta.env.VITE_API}/AddService/details/${id}`
+    ).then((res) =>{ 
+      setIsLoading(false);
+      setData(res.data)})
+    .catch((err) => {
+      console.log(err);
+      setIsLoading(false);
+    });
+  },)
 
-  const { data, isLoading } = useQuery({
-    queryKey: ["myPostedServices"],
-    queryFn: async () => {
-      return await SecureAxios.get(
-        `${import.meta.env.VITE_API}/AddService/details/${id}`
-      );
-    },
-  });
 
   const queryClient = useQueryClient();
   const { mutate, isError, error, isPending } = useMutation({
@@ -64,7 +71,7 @@ function UpdateService() {
     <div>
       <h3 className="font-bold text-3xl text-center my-5">Update service!</h3>
       <div>
-        {data?.data && (
+        { data && (
           <form
             method="dialog"
             onSubmit={onSubmit}
@@ -72,7 +79,7 @@ function UpdateService() {
           >
             <input
               required
-              defaultValue={data.data.Photo_url}
+              defaultValue={data.Photo_url}
               placeholder="service image link ex : https://service.jpg"
               className="border  p-2 rounded-md w-full my-4"
               name="Photo_url"
@@ -80,7 +87,7 @@ function UpdateService() {
 
             <input
               required
-              defaultValue={data.data.Service_Name}
+              defaultValue={data.Service_Name}
               placeholder="Service Name"
               className="border  p-2 rounded-md w-full my-4"
               name="Service_Name"
@@ -88,7 +95,7 @@ function UpdateService() {
 
             <input
               required
-              defaultValue={data.data.price}
+              defaultValue={data.price}
               placeholder="Price"
               type="number"
               className="border  p-2 rounded-md w-full my-4"
@@ -97,7 +104,7 @@ function UpdateService() {
 
             <input
               required
-              defaultValue={data.data.Service_Area}
+              defaultValue={data.Service_Area}
               placeholder="Service Area"
               className="border   p-2 rounded-md w-full my-4"
               name="Service_Area"
@@ -105,7 +112,7 @@ function UpdateService() {
 
             <textarea
               required
-              defaultValue={data.data.Description}
+              defaultValue={data.Description}
               placeholder="Description write here..."
               className="border col-span-2  p-2 rounded-md w-full my-4"
               name="Description"
