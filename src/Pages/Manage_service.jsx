@@ -1,9 +1,7 @@
 import { MdDeleteForever } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
-import { useQueryClient, useMutation } from "@tanstack/react-query";
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../Context/AuthContext";
-import axios from "axios";
 import { toast } from "sonner";
 import SecureAxios from "../hook/SecureAxios";
 import { Button } from "keep-react";
@@ -14,7 +12,6 @@ function Manage_service() {
   const { user } = useContext(UserContext);
   const [resposdatas, setResposdatas] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const queryClient = useQueryClient();
 
   useEffect(() => {
     SecureAxios.get(`${import.meta.env.VITE_API}/AddService/${user.email}`)
@@ -28,14 +25,16 @@ function Manage_service() {
       });
   }, [user.email]);
  
-  const { mutate } = useMutation({
-    mutationFn: async (id) => {
-      await axios.delete(`${import.meta.env.VITE_API}/AddService/${id}`);
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries(["myPostedServices",user.email]);
-    },
-  });
+  const DeleteService = async (id) => {
+    try {
+      await SecureAxios.delete(`${import.meta.env.VITE_API}/AddService/${id}`);
+      setResposdatas((prev) => prev.filter((item) => item._id !== id));
+      toast.success("Service successfully deleted!");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 
   if (isLoading) return <Loading />;
 
@@ -49,14 +48,7 @@ function Manage_service() {
               onClick={() => {
                 toast.dismiss(t);
 
-                mutate(id, {
-                  onSuccess: () => {
-                    setResposdatas((prev) =>
-                      prev.filter((item) => item._id !== id)
-                    );
-                    toast.success("Service successfully deleted!");
-                  },
-              })
+                DeleteService(id)
                 
               }}
               className="bg-green-500 text-white"

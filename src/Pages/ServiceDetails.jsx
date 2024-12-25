@@ -15,7 +15,7 @@ function ServiceDetails() {
     const [Details, setDetails]= useState({})
     const [isLoading, setLoading]= useState(true)
     const{id}= useParams()
-  console.log(Details)
+
      useEffect(() =>{
       
       SecureAxios.get(`${import.meta.env.VITE_API}/AddService/details/${id}`)
@@ -34,7 +34,7 @@ function ServiceDetails() {
       document.getElementById("my_modal_2").showModal();
     };
 
-     console.log(Details)
+    
     if(isLoading) return <Loading/>
     if(!Details) return <div>Service not found</div>
   return (

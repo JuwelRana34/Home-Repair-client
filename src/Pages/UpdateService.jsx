@@ -1,5 +1,4 @@
 import { toast } from "sonner";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router";
 import SecureAxios from "../hook/SecureAxios";
 import Loading from "../Components/Loading";
@@ -7,36 +6,25 @@ import { useEffect, useState } from "react";
 function UpdateService() {
   const { id } = useParams();
   const Navigate = useNavigate();
-  const [data,  setData] = useState([]);
-  const [isLoading,  setIsLoading] = useState(true);
-  
-  useEffect(()=>{
-    SecureAxios.get(
-      `${import.meta.env.VITE_API}/AddService/details/${id}`
-    ).then((res) =>{ 
-      setIsLoading(false);
-      setData(res.data)})
-    .catch((err) => {
-      console.log(err);
-      setIsLoading(false);
-    });
-  },)
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isPending, setIsPending] = useState(false);
 
-
-  const queryClient = useQueryClient();
-  const { mutate, isError, error, isPending } = useMutation({
-    mutationFn: async (data) => {
-      SecureAxios.patch(`${import.meta.env.VITE_API}/AddService/${id}`, data);
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries(["myPostedServices"]);
-      Navigate("/manage-service");
-      toast.success("Service updated successfully!");
-    },
-  });
+  useEffect(() => {
+    SecureAxios.get(`${import.meta.env.VITE_API}/AddService/details/${id}`)
+      .then((res) => {
+        setIsLoading(false);
+        setData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsLoading(false);
+      });
+  }, [id]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    setIsPending(true);
     const { price, Photo_url, Service_Name, Service_Area, Description } =
       e.target;
 
@@ -50,28 +38,34 @@ function UpdateService() {
       return toast.error("Please enter a valid price");
     }
 
-    mutate({
+    await SecureAxios.patch(`${import.meta.env.VITE_API}/AddService/${id}`, {
       price: price.value,
       Photo_url: Photo_url.value,
       Service_Name: Service_Name.value,
       Service_Area: Service_Area.value,
       Description: Description.value,
-    });
+    })
+      .then(() => {
+        Navigate("/manage-service");
+        toast.success("Service updated successfully!");
+        setIsPending(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsPending(false);
+        toast.error("Failed to update service");
+      });
   };
 
   if (isLoading) {
     return <Loading />;
   }
 
-  if (isError) {
-    console.log(error.message);
-    toast.error("Failed to update service");
-  }
   return (
     <div>
       <h3 className="font-bold text-3xl text-center my-5">Update service!</h3>
       <div>
-        { data && (
+        {data && (
           <form
             method="dialog"
             onSubmit={onSubmit}
