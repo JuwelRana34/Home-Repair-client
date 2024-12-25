@@ -140,28 +140,27 @@ function Navbar() {
             {navitems}
           </ul>
         </div>
-        <div className="flex items-center">
-          <Link to={"/"}>
-            <img
-              src={logo}
-              className=" dark:rounded-lg w-12 md:w-16"
-              alt="Home_repair"
-            />
-          </Link>
+        <Link to={"/"} className="flex items-center">
+          <img
+            src={logo}
+            className=" dark:rounded-lg w-12 md:w-16"
+            alt="Home_repair"
+          />
+
           <Link
             to={"/"}
             className="btn text-green-500 text-xl btn-ghost p-2 dark:text-metal-300 md:text-3xl font-bold font-berkshire"
           >
             Home repair
           </Link>
-        </div>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu flex items-center space-x-4 font-semibold menu-horizontal px-1">
           {navitems}
         </ul>
       </div>
-      <div className="navbar-end">
+      <div className="navbar-end ">
         {user ? (
           <>
             <div className="flex items-center space-x-2">

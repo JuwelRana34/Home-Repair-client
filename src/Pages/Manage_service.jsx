@@ -27,7 +27,7 @@ function Manage_service() {
         setIsLoading(false);
       });
   }, [user.email]);
-
+ 
   const { mutate } = useMutation({
     mutationFn: async (id) => {
       await axios.delete(`${import.meta.env.VITE_API}/AddService/${id}`);
