@@ -3,7 +3,7 @@ import ServiceCard from "../Components/ServiceCard"
 import { toast } from "sonner";
 import { useEffect, useState } from "react";
 import Loading from "../Components/Loading";
-
+import  NotFound from "../Components/NotFound";
 
 function Services() {
   const [data, setData] = useState([])
@@ -42,6 +42,7 @@ function Services() {
 </label>
 <div className="space-y-5">
  {
+  data.length === 0 ?  <NotFound text={"Oops! data not Found! something went wrong! "}/>: 
     data.map((service) => {
       return <ServiceCard key={service.id} service={service}/>
     })

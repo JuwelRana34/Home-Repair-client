@@ -34,7 +34,6 @@ function Manage_service() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["myPostedServices"]);
-      toast.success("Service deleted successfully!");
     },
   });
 
@@ -50,9 +49,15 @@ function Manage_service() {
               onClick={() => {
                 toast.dismiss(t);
 
-                mutate(id);
-
-                toast.success("service successfully deleted!");
+                mutate(id, {
+                  onSuccess: () => {
+                    setResposdatas((prev) =>
+                      prev.filter((item) => item._id !== id)
+                    );
+                    toast.success("Service successfully deleted!");
+                  },
+              })
+                
               }}
               className="bg-green-500 text-white"
             >

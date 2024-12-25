@@ -56,8 +56,8 @@ function SignUp() {
 
   return (
     <>
-    <div className="border rounded-lg md:w-1/2 mx-auto p-4">
-      <h1 className="text-center my-5 capitalize font-bold text-xl">
+    <div className="border my-10 rounded-lg md:w-1/2 mx-auto p-4">
+      <h1 className="text-center my-5 capitalize font-bold text-2xl">
         registration{" "}
       </h1>
       <form onSubmit={HandelRegistration} className=" space-y-4">
@@ -138,15 +138,17 @@ function SignUp() {
           </Link>
         </p>
 
-        <button className="btn  bg-blue-500 hover:bg-blue-600 text-white w-full">Registration</button>
+        <button className="btn  bg-blue-500 hover:bg-blue-600 dark:hover:bg-metal-700 dark:bg-metal-800 text-white w-full">Registration</button>
       </form>
+      <div className="divider">OR</div>
+      
       <div className=" w-full  flex justify-center">
         <button
-          className="border text-md font-semibold text-gray-600 capitalize flex  items-center gap-3 rounded-lg my-5 py-2 px-3"
+          className="border text-md font-semibold text-gray-600 capitalize flex  items-center gap-3 rounded-lg my-5 py-2 px-3 dark:text-metal-300"
           onClick={googleRegistration}
         >
           <img
-            className="w-7"
+            className="w-7 "
             src="https://cdn-icons-png.flaticon.com/128/300/300221.png"
             alt=""
             

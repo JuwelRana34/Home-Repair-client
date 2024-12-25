@@ -12,6 +12,7 @@ import {
 import Loading from "./Loading";
 import { IoLocationSharp } from "react-icons/io5";
 import { motion } from "motion/react";
+import NotFound from "./NotFound";
 function PopularServices() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -28,79 +29,87 @@ function PopularServices() {
       });
   }, []);
 
-  if (loading) return <Loading/>
+  if (loading) return <Loading />;
   return (
     <>
       <h1 className="container mx-auto text-3xl font-bold  mt-5 py-4">
         Popular Services
       </h1>
-      <div className="grid container mx-auto  grid-cols-1 lg:grid-cols-2 gap-5 p-5">
-        {data?.map((service, index) => (
-          <motion.div
-            key={service._id}
-            initial={{ y: 50, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: index * 0.2 }}
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            <Card
+      <div
+        className={`grid container mx-auto  grid-cols-1 ${
+          data.length > 0 && "lg:grid-cols-2"
+        } gap-5 p-5`}
+      >
+        {data.length <= 0 ? (
+          <NotFound text={"Oops! data not loaded please try again later!"} />
+        ) : (
+          data?.map((service, index) => (
+            <motion.div
               key={service._id}
-              className={` dark:bg-metal-800 dark:border-metal-800 md:flex md:p-4 my-1 gap-5 items-start md:max-w-[100%] h-full  mx-auto  rounded-md shadow-md`}
+              initial={{ y: 50, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+              viewport={{ once: true, amount: 0.3 }}
             >
-              <CardHeader className="md:w-[50%]">
-                <img
-                  className=" w-full rounded-md"
-                  src={service.Photo_url}
-                  alt=""
-                />
-              </CardHeader>
+              <Card
+                key={service._id}
+                className={` dark:bg-metal-800 dark:border-metal-800 md:flex md:p-4 my-1 gap-5 items-start md:max-w-[100%] h-full  mx-auto  rounded-md shadow-md`}
+              >
+                <CardHeader className="md:w-[50%]">
+                  <img
+                    className=" w-full rounded-md"
+                    src={service.Photo_url}
+                    alt=""
+                  />
+                </CardHeader>
 
-              <CardContent className=" md:w-[50%] space-y-5 p-4 flex-col gap-5">
-                <div className="space-y-2">
-                  <CardTitle className="dark:text-metal-300 capitalize">
-                    {service.Service_Name}
-                  </CardTitle>
-                  <CardDescription>
-                    {service.Description.substring(0, 100)}...
-                  </CardDescription>
+                <CardContent className=" md:w-[50%] space-y-5 p-4 flex-col gap-5">
+                  <div className="space-y-2">
+                    <CardTitle className="dark:text-metal-300 capitalize">
+                      {service.Service_Name}
+                    </CardTitle>
+                    <CardDescription>
+                      {service.Description.substring(0, 100)}...
+                    </CardDescription>
 
-                  <p className=" capitalize py-2 font-semibold text-md">
-                    {" "}
-                    price: $ {service.price}
-                  </p>
+                    <p className=" capitalize py-2 font-semibold text-md">
+                      {" "}
+                      price: $ {service.price}
+                    </p>
 
-                  <Link to={`/serviceDetails/${service._id}`}>
-                    <Button className="bg-blue-500 dark:bg-metal-700 dark:text-gray-300">
-                      View Details
-                    </Button>
-                  </Link>
-                </div>
-
-                <div className=" flex-col justify-end">
-                  <p className=" capitalize font-semibold text-xl">
-                    Service Provider:
-                  </p>
-                  <div className="flex items-center mt-4 md:mt-0 md:ml-auto">
-                    <img
-                      src={service.Provider_info.photo}
-                      alt={service.Provider_info.name}
-                      className="w-12 h-12 shadow-md ring-2 rounded-full"
-                    />
-                    <span
-                      className={`ml-2 text-gray-800 font-semibold dark:text-metal-300`}
-                    >
-                      name: {service.Provider_info.name} <br />
-                    </span>
+                    <Link to={`/serviceDetails/${service._id}`}>
+                      <Button className="bg-blue-500 dark:bg-metal-700 dark:text-gray-300">
+                        View Details
+                      </Button>
+                    </Link>
                   </div>
-                  <p className=" mt-2 flex items-center gap-1 capitalize font-semibold text-md">
-                    {" "}
-                    <IoLocationSharp /> area: {service.Service_Area}{" "}
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        ))}
+
+                  <div className=" flex-col justify-end">
+                    <p className=" capitalize font-semibold text-xl">
+                      Service Provider:
+                    </p>
+                    <div className="flex items-center mt-4 md:mt-0 md:ml-auto">
+                      <img
+                        src={service.Provider_info.photo}
+                        alt={service.Provider_info.name}
+                        className="w-12 h-12 shadow-md ring-2 rounded-full"
+                      />
+                      <span
+                        className={`ml-2 text-gray-800 font-semibold dark:text-metal-300`}
+                      >
+                        name: {service.Provider_info.name} <br />
+                      </span>
+                    </div>
+                    <p className=" mt-2 flex items-center gap-1 capitalize font-semibold text-md">
+                      {" "}
+                      <IoLocationSharp /> area: {service.Service_Area}{" "}
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))
+        )}
       </div>
       <div className="text-center my-5 ">
         <Link

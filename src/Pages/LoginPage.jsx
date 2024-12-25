@@ -37,9 +37,9 @@ function LoginPage() {
   return (
 
       
-      <div className="card  bg-base-100 w-full max-w-sm mx-auto shrink-0 shadow-2xl">
+      <div className="card my-10  bg-base-100 w-full max-w-sm mx-auto shrink-0 dark:bg-metal-800 shadow-lg">
         <form onSubmit={Login} className="card-body p-5">
-         <h1 className="text-3xl font-bold text-center text-orange-600">Login</h1>
+         <h1 className="text-3xl font-bold text-center dark:text-metal-300 text-metal-600">Login</h1>
           <div className="form-control">
             <label className="label">
               <span className="label-text">Email</span>
@@ -70,17 +70,17 @@ function LoginPage() {
             </label>
           </div>
           <div className="form-control mt-2">
-            <button className="btn text-md">Login</button>
+            <button className="btn bg-green-500 hover:bg-green-500 dark:hover:bg-metal-700 text-white dark:bg-metal-700 text-md">Login</button>
           </div>
         </form>
         <Divider className="mb-2 text-lg w-[80%] mx-auto" variant="center">or</Divider>
-        <Button onClick={GoogleLoginf} className=" hover:bg-slate-50 space-x-2 mb-5 w-[80%] mx-auto border text-gray-800 ">
+        <Button onClick={GoogleLoginf} className=" hover:bg-slate-50 dark:hover:bg-metal-700 space-x-2 mb-5 w-[80%] mx-auto border text-gray-800 ">
            <img className="w-6" src="https://cdn-icons-png.flaticon.com/128/720/720255.png" alt=""  />
-           <h1>Login with Google </h1> 
+           <h1 className="dark:text-metal-300">Login with Google </h1> 
            
            </Button>
 
-           <h1 className="text-center py-2 font-semibold text-gray-600">you haven&apos;t account? <Link className="text-blue-600" to={'/signup'}> registration </Link > </h1>
+           <h1 className="text-center py-2 font-semibold text-gray-600 dark:text-metal-300">you haven&apos;t account? <Link className="text-blue-600" to={'/signup'}> registration </Link > </h1>
       </div>
  
   )
