@@ -3,7 +3,8 @@
 This is a full-stack web application built using **React** on the frontend and **Node.js** for the backend. The project leverages modern tools and libraries to ensure scalability, maintainability, and performance.
 
 ## 🚀 Live Site
-Frontend: [https://homere-paire.web.app](https://homere-paire.web.app)  
+firebase: [https://homere-paire.web.app](https://homere-paire.web.app)  
+netlify: [https://home-repairbd.netlify.app/](https://home-repairbd.netlify.app/)  
 
 ---
 
