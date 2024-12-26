@@ -64,7 +64,9 @@ function Service_To_Do() {
                 <CardTitle className="dark:text-metal-300">
                   {item.Service_Name}
                 </CardTitle>
-                <CardDescription>{item.special_instruction}</CardDescription>
+                <CardDescription>
+                  <span className="font-semibold">special instruction: </span>
+                  {item.special_instruction}</CardDescription>
                 <div className="space-y-2 font-semibold">
                   <p className="text-sm md:text-base">
                     Service Taking Date:{" "}
