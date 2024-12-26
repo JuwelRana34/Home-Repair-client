@@ -210,6 +210,7 @@ function ModalBooked({ item }) {
                 </span>
 
                 <textarea
+                 required
                   placeholder="anything like address , area, customized service plan..."
                   className="border col-span-2  p-2 rounded-md w-full my-4"
                   name="Special_instruction"

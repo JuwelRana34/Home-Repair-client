@@ -10,7 +10,6 @@ import {
   CardTitle,
 } from "keep-react";
 import Loading from "./Loading";
-import { IoLocationSharp } from "react-icons/io5";
 import { motion } from "motion/react";
 import NotFound from "./NotFound";
 function PopularServices() {
@@ -85,7 +84,7 @@ function PopularServices() {
                   </div>
 
                   <div className=" flex-col justify-end">
-                    <p className=" capitalize font-semibold text-xl">
+                    <p className=" capitalize py-2 font-semibold text-xl">
                       Service Provider:
                     </p>
                     <div className="flex items-center mt-4 md:mt-0 md:ml-auto">
@@ -100,10 +99,7 @@ function PopularServices() {
                         name: {service.Provider_info.name} <br />
                       </span>
                     </div>
-                    <p className=" mt-2 flex items-center gap-1 capitalize font-semibold text-md">
-                      {" "}
-                      <IoLocationSharp /> area: {service.Service_Area}{" "}
-                    </p>
+                    
                   </div>
                 </CardContent>
               </Card>

@@ -1,22 +1,20 @@
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "keep-react";
 import axios from "axios";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { useContext} from "react";
+import { useContext } from "react";
 import UserContext from "../Context/AuthContext";
 import SecureAxios from "../hook/SecureAxios";
 import NotFound from "../Components/NotFound";
 import Loading from "../Components/Loading";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "keep-react";
 
 function Service_To_Do() {
-  // const [status, setStatus] = useState('Pending')
   const { user } = useContext(UserContext);
   const queryClient = useQueryClient();
   const { isLoading, error, isError, data } = useQuery({
@@ -44,65 +42,50 @@ function Service_To_Do() {
     mutate({ id, newStatus });
   };
 
-  if (isLoading) return <Loading/>
+  if (isLoading) return <Loading />;
 
   if (isError) return toast.error("An error has occurred: " + error.message);
 
   return (
     <div className="container mx-auto">
-      <h1 className="text-2xl font-bold text-center my-5">
-      
+      <h1 className="text-2xl font-bold text-center pb-10 my-5">
         Service To Do
       </h1>
-      {data.data.length === 0? <NotFound text={'Oops! you have no  to do services!'}/> : 
-      <Table >
-      <TableHeader>
-        <TableRow>
-          <TableHead>
-            <div className="max-w-[250px]">service photo </div>
-          </TableHead>
-          <TableHead>
-            <div className="w-[80px]">service name</div>
-          </TableHead>
-          <TableHead>
-            <div className="w-[85px]">Special instruction </div>
-          </TableHead>
-          <TableHead>
-            <div className="w-[90px]">Service Taking Date </div>
-          </TableHead>
-          <TableHead>
-            <div className="w-[90px]">Customar Name </div>
-          </TableHead>
-          <TableHead>
-            <div className="w-[80px]">Status</div>
-          </TableHead>
-        </TableRow>
-      </TableHeader>
-     
-      <TableBody className="dark:bg-metal-800">
-        {data.data.map((item) => (
-          <TableRow key={item.id}>
-            <TableCell>
-              <div className="max-w-[250px] truncate">
-                {" "}
-                <img
-                  className=" rounded-md w-16  h-16 object-cover "
-                  src={item.Photo_url}
-                  alt=""
-                />
-              </div>
-            </TableCell>
-            <TableCell>{item.Service_Name}</TableCell>
-            <TableCell>{item.special_instruction}</TableCell>
+      <div className="grid p-2 md:w-[60%] gap-5 grid-cols-1 lg:grid-cols-2 mx-auto justify-items-center ">
+        {data.data.length === 0 ? (
+          <NotFound text={"Oops! you have no  to do services!"} />
+        ) : (
+          data.data.map((item) => (
+            <Card key={item._id} className="dark:bg-metal-800 max-w-full">
+              <CardHeader>
+                <img src={item.Photo_url} alt={item.Service_Name} />
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <CardTitle className="dark:text-metal-300">
+                  {item.Service_Name}
+                </CardTitle>
+                <CardDescription>{item.special_instruction}</CardDescription>
+                <div className="space-y-2 font-semibold">
+                  <p className="text-sm md:text-base">
+                    Service Taking Date:{" "}
+                    <span className="bg-blue-100 text-blue-500 font-normal dark:bg-slate-500 dark:text-metal-300 rounded-full p-1 px-2">
+                      {new Date(item.service_taking_data).toLocaleDateString()}
+                    </span>
+                  </p>
 
-            <TableCell>
-              {new Date(item.service_taking_data).toLocaleDateString()}
-            </TableCell>
-            <TableCell>{item.customer_name}</TableCell>
-            <TableCell>
-              {item?.status && (
-                <select
-                  className={`border  p-2 rounded-md
+                  <p>
+                    Customar Name:{" "}
+                    <span className="font-normal"> {item.customer_name}</span>
+                  </p>
+                  <p>
+                    Customar Email:{" "}
+                    <span className="font-normal"> {item.customer_email}</span>
+                  </p>
+                </div>
+                <span className="font-semibold">Status: </span>{" "}
+                {item?.status && (
+                  <select
+                    className={`  p-1 cursor-pointer rounded-md
                      ${
                        item.status === "pending"
                          ? "bg-yellow-100 text-orange-500"
@@ -111,24 +94,22 @@ function Service_To_Do() {
                          : "bg-green-100 text-green-500"
                      }
                     `}
-                  value={item.status}
-                  onChange={(value) =>
-                    handelStatus(item._id, value.target.value)
-                  }
-                >
-                  <option value="pending">pending</option>
-                  <option value="working">working</option>
-                  <option value="completed">completed</option>
-                </select>
-              )}
-            </TableCell>
-          </TableRow>
-        ))}
-      </TableBody>
-    </Table>
-}
+                    value={item.status}
+                    onChange={(value) =>
+                      handelStatus(item._id, value.target.value)
+                    }
+                  >
+                    <option value="pending">pending</option>
+                    <option value="working">working</option>
+                    <option value="completed">completed</option>
+                  </select>
+                )}
+              </CardContent>
+            </Card>
+          ))
+        )}
+      </div>
     </div>
-    
   );
 }
 
