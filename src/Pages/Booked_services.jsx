@@ -54,7 +54,7 @@ function Booked_services() {
           <TableCell>{item.Service_Name}</TableCell>
           <TableCell>{item.price}</TableCell>
           <TableCell>{ new Date(item.service_taking_data).toLocaleDateString() }</TableCell>
-          <TableCell>{item.Provider_email}</TableCell>
+          <TableCell>{item.Provider_name}</TableCell>
           <TableCell >
               <span className={`
                font-semibold
