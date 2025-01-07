@@ -41,3 +41,25 @@ netlify: [https://home-repairbd.netlify.app/](https://home-repairbd.netlify.app/
 - **Firebase** for authentication an.
 - **database**  as a database use mongodb
 ---
+## Dependencies
+
+This project uses the following dependencies:
+
+```json
+"dependencies": {
+  "@lottiefiles/react-lottie-player": "^3.5.4",
+  "@tanstack/react-query": "^5.62.8",
+  "axios": "^1.7.9",
+  "embla-carousel-autoplay": "^8.5.1",
+  "firebase": "^11.0.2",
+  "keep-react": "^1.6.1",
+  "motion": "^11.15.0",
+  "phosphor-react": "^1.4.1",
+  "react": "^18.3.1",
+  "react-datepicker": "^7.5.0",
+  "react-dom": "^18.3.1",
+  "react-hook-form": "^7.54.2",
+  "react-icons": "^5.4.0",
+  "react-router": "^7.0.1",
+  "sonner": "^1.7.1"
+}
