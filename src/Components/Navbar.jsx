@@ -60,12 +60,17 @@ function Navbar() {
           <a>Services</a>
         </li>
       </NavLink>
+      <NavLink to={"/Contactus"}>
+        <li>
+          <a>Contact-Us</a>
+        </li>
+      </NavLink>
 
       {user && (
         <div className="relative group">
           <button
             onClick={toggleDropdown}
-            className="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-metal-700 focus:outline-none"
+            className="p-2 rounded-md hover:bg-blue-200 dark:hover:bg-metal-700 focus:outline-none"
           >
             Dashboard
           </button>
@@ -110,7 +115,8 @@ function Navbar() {
   );
 
   return (
-    <div className="navbar container mx-auto py-4 bg-base-100">
+    <div className=" dark:bg-black/45 backdrop-blur bg-white/45 sticky top-0 z-[9999]">
+<div className="navbar container mx-auto py-4">
       <div className="navbar-start">
         <div className="dropdown">
           <div
@@ -149,7 +155,7 @@ function Navbar() {
 
           <Link
             to={"/"}
-            className="btn text-green-500 text-xl btn-ghost p-2 dark:text-metal-300 md:text-3xl font-bold font-berkshire"
+            className="btn text-blue-600 text-xl btn-ghost p-2 dark:text-metal-300 md:text-3xl font-bold font-berkshire"
           >
             Home repair
           </Link>
@@ -183,6 +189,9 @@ function Navbar() {
         )}
       </div>
     </div>
+
+    </div>
+    
   );
 }
 

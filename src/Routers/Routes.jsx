@@ -13,6 +13,7 @@ import Service_To_Do from "../Pages/Service_To_Do";
 import PrivetRoute from "./PrivetRoute";
 import ServiceDetails from "../Pages/ServiceDetails";
 import UpdateService from "../Pages/UpdateService";
+import ContactUs from "../Pages/ContactUs";
 
 const AppRoute = () => {
   return(
@@ -22,6 +23,8 @@ const AppRoute = () => {
       <Route path='LoginPage' element={<LoginPage />} />
       <Route path='signup' element={<SignUp />} />
       <Route path="services" element={<Services />} />
+      <Route path="dashboard" element={<Dashboard />} />
+      <Route path="Contactus" element={<ContactUs />} />
       <Route path="dashboard" element={<Dashboard />} />
       <Route path="add-service" element={ <PrivetRoute> <Add_service /> </PrivetRoute> } />
       <Route path="manage-service" element={<PrivetRoute>< Manage_service/></PrivetRoute>} />

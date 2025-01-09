@@ -31,7 +31,7 @@ function PopularServices() {
   if (loading) return <Loading />;
   return (
     <>
-      <h1 className="container mx-auto text-3xl font-bold  mt-5 py-4">
+      <h1 className="container text-center mx-auto text-3xl font-bold  mt-5 py-4">
         Popular Services
       </h1>
       <div

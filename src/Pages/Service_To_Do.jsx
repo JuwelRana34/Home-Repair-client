@@ -47,7 +47,7 @@ function Service_To_Do() {
   if (isError) return toast.error("An error has occurred: " + error.message);
 
   return (
-    <div className="container mx-auto">
+    <div className="container min-h-screen mx-auto">
       <h1 className="text-2xl font-bold text-center pb-10 my-5">
         Service To Do
       </h1>

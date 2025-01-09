@@ -73,7 +73,7 @@ function Manage_service() {
   };
 
   return (
-    <>
+    <div className=" min-h-screen">
       <h1 className="text-3xl py-10 text-gray-700 dark:text-metal-300 text-center font-bold">
         {" "}
         Manage Services
@@ -132,7 +132,7 @@ function Manage_service() {
           })
         )}
       </div>
-    </>
+    </div>
   );
 }
 

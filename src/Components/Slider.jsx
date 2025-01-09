@@ -71,7 +71,7 @@ function Slider() {
                 >
                   <Link
                     to={"/services"}
-                    className=" py-2 px-3 bg-green-500/90 t-5 text-white rounded-md"
+                    className=" py-2 px-3 bg-blue-500/90 t-5 text-white rounded-md"
                   >
                     Explore Now
                   </Link>

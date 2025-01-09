@@ -18,7 +18,7 @@ function Booked_services() {
   if(isError) return toast.error('An error has occurred: ' + error.message)
 
   return (
-    <div className='md:px-8 mt-5'>
+    <div className='md:px-8 mt-5 min-h-screen'>
      <h1 className=' text-3xl py-5 mb-5 capitalize font-bold text-center text-gray-700 dark:text-metal-300'> my Booked services </h1>
      {data?.data?.length === 0 ? <div> <NotFound text={"You have not booked any service yet !"} /></div>  :
     <Table >

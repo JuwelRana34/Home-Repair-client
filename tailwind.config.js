@@ -1,4 +1,5 @@
 import { keepTheme } from "keep-react/keepTheme";
+import daisyui from "daisyui";
 /** @type {import('tailwindcss').Config} */
 
 const config = {
@@ -14,8 +15,7 @@ const config = {
     },
   },
   plugins: [
-    // eslint-disable-next-line no-undef
-    require('daisyui'),
+   daisyui
   ],
 }
 

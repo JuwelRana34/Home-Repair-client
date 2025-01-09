@@ -38,7 +38,7 @@ function ServiceDetails() {
     if(isLoading) return <Loading/>
     if(!Details) return <div>Service not found</div>
   return (
-    <div>
+    <div className="min-h-screen">
 
   <h1 className="text-3xl font-bold text-center my-5 py-4">
     About the service <span className="text-gray-900 dark:text-metal-300">&quot;{Details.Service_Name}&quot; </span> 
