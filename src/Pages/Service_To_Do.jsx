@@ -14,10 +14,12 @@ import {
   CardTitle,
 } from "keep-react";
 
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from 'keep-react'
+
 function Service_To_Do() {
   const { user } = useContext(UserContext);
   const queryClient = useQueryClient();
-  const { isLoading, error, isError, data } = useQuery({
+  const { isLoading, error, isError, data=[] } = useQuery({
     queryKey: ["booked_services"],
     queryFn: () => {
       return SecureAxios.get(
@@ -51,43 +53,56 @@ function Service_To_Do() {
       <h1 className="text-2xl font-bold text-center pb-10 my-5">
         Service To Do
       </h1>
-      <div className="grid p-2 md:w-[60%] gap-5 grid-cols-1 lg:grid-cols-2 mx-auto justify-items-center ">
-        {data.data.length === 0 ? (
-          <NotFound text={"Oops! you have no  to do services!"} />
-        ) : (
-          data.data.map((item) => (
-            <Card key={item._id} className="dark:bg-metal-800 max-w-full">
-              <CardHeader>
-                <img src={item.Photo_url} alt={item.Service_Name} />
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <CardTitle className="dark:text-metal-300">
-                  {item.Service_Name}
-                </CardTitle>
-                <CardDescription>
-                  <span className="font-semibold">special instruction: </span>
-                  {item.special_instruction}</CardDescription>
-                <div className="space-y-2 font-semibold">
-                  <p className="text-sm md:text-base">
-                    Service Taking Date:{" "}
-                    <span className="bg-blue-100 text-blue-500 font-normal dark:bg-slate-500 dark:text-metal-300 rounded-full p-1 px-2">
-                      {new Date(item.service_taking_data).toLocaleDateString()}
-                    </span>
-                  </p>
+      
 
-                  <p>
-                    Customar Name:{" "}
-                    <span className="font-normal"> {item.customer_name}</span>
-                  </p>
-                  <p>
-                    Customar Email:{" "}
-                    <span className="font-normal"> {item.customer_email}</span>
-                  </p>
-                </div>
-                <span className="font-semibold">Status: </span>{" "}
+      {/* table  */}
+      {data?.data?.length === 0 ? <div> <NotFound text={"You have not booked any service yet !"} /></div>  :
+    <Table  >
+    <TableHeader  >
+      <TableRow >
+        <TableHead >
+          <div className="max-w-[250px]">service photo </div>
+        </TableHead>
+        <TableHead>
+          <div className="w-[80px]">service name</div>
+        </TableHead>
+        <TableHead>
+          <div className="w-[80px]"> special instruction</div>
+        </TableHead>
+        <TableHead>
+          <div className="w-[85px]">Price</div>
+        </TableHead>
+        <TableHead>
+          <div className="w-[90px]">Service Taking Date </div>
+        </TableHead>
+        <TableHead>
+          <div className="w-[90px]">Customer Email</div>
+        </TableHead>
+        <TableHead>
+          <div className="w-[80px]">Status</div>
+        </TableHead>
+      </TableRow>
+    </TableHeader>
+    <TableBody className='dark:bg-metal-800'>
+    
+      {data?.data?.map((item) => (
+        <TableRow key={item._id}>
+          <TableCell>
+            <div className="max-w-[250px] truncate"> <img className=' rounded-md w-16  h-16 object-cover object-center ' src={item.Photo_url}alt=""  /></div>
+          </TableCell>
+          <TableCell>{item.Service_Name}</TableCell>
+          <TableCell> {item.special_instruction}</TableCell>
+          <TableCell>{item.price}</TableCell>
+          <TableCell>{ new Date(item.service_taking_data).toLocaleDateString() }</TableCell>
+          <TableCell>{item.customer_email}</TableCell>
+          <TableCell >
+              <span className={`
+               font-semibold
+               
+            `}>
                 {item?.status && (
                   <select
-                    className={`  p-1 cursor-pointer rounded-md
+                    className={`  p-1 cursor-pointer dark:text-metal-200 dark:bg-metal-700 rounded-md
                      ${
                        item.status === "pending"
                          ? "bg-yellow-100 text-orange-500"
@@ -106,11 +121,17 @@ function Service_To_Do() {
                     <option value="completed">completed</option>
                   </select>
                 )}
-              </CardContent>
-            </Card>
-          ))
-        )}
-      </div>
+              </span>
+              
+              
+              </TableCell>
+        </TableRow>
+      ))}
+
+
+    </TableBody>
+  </Table>
+  }
     </div>
   );
 }

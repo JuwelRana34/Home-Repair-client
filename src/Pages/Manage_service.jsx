@@ -8,6 +8,14 @@ import { Button } from "keep-react";
 import { Link } from "react-router";
 import NotFound from "../Components/NotFound";
 import Loading from "../Components/Loading";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "keep-react";
 function Manage_service() {
   const { user } = useContext(UserContext);
   const [resposdatas, setResposdatas] = useState([]);
@@ -24,7 +32,7 @@ function Manage_service() {
         setIsLoading(false);
       });
   }, [user.email]);
- 
+
   const DeleteService = async (id) => {
     try {
       await SecureAxios.delete(`${import.meta.env.VITE_API}/AddService/${id}`);
@@ -33,8 +41,7 @@ function Manage_service() {
     } catch (error) {
       console.log(error);
     }
-  }
-
+  };
 
   if (isLoading) return <Loading />;
 
@@ -48,8 +55,7 @@ function Manage_service() {
               onClick={() => {
                 toast.dismiss(t);
 
-                DeleteService(id)
-                
+                DeleteService(id);
               }}
               className="bg-green-500 text-white"
             >
@@ -78,58 +84,64 @@ function Manage_service() {
         {" "}
         Manage Services
       </h1>
-      <div
-        className={`grid grid-cols-1 my-10 gap-5 mx-auto ${
-          resposdatas?.length > 0 && "md:grid-cols-2"
-        }   `}
-      >
+      <div className={`grid grid-cols-1 my-10 gap-5 mx-auto  `}>
         {resposdatas?.length === 0 ? (
-          <NotFound text={"Oops! you have not add any services yet!"} />
+          <div>
+            {" "}
+            <NotFound text={"You have not booked any service yet !"} />
+          </div>
         ) : (
-          resposdatas?.map((item) => {
-            return (
-              <div
-                key={item?._id}
-                className="w-[90%]  mx-auto dark:bg-metal-800 rounded-md "
-              >
-                <div className="card dark:bg-metal-800 lg:flex-row md:h-[28rem] lg:h-[18rem] flex-grow bg-base-100 w-full shadow-xl">
-                  <figure className="p-2">
-                    <img
-                      className="w-full rounded-md h-full object-cover object-center"
-                      src={item.Photo_url}
-                      alt="Shoes"
-                    />
-                  </figure>
-                  <div className="card-body  ">
-                    <h2 className="card-title capitalize">
-                      {item.Service_Name}
-                    </h2>
-                    <p className=" text-justify">
-                      {item.Description.substring(0, 100)}...
-                    </p>
-                    <span className=" font-semibold text-lg">
-                      Price: $ {item.price}{" "}
-                    </span>
-
-                    <div className="card-actions  h-10 justify-end items-center">
-                      <button
-                        onClick={() => handleDelete(item._id)}
-                        className="badge badge-outline py-3 bg-rose-100 text-rose-600 font-semibold dark:bg-metal-800 dark:text-metal-300 dark:hover:text-metal-25"
-                      >
-                        <MdDeleteForever /> Delete{" "}
-                      </button>
-                      <Link
-                        to={`/UpdateService/${item._id}`}
-                        className="badge badge-outline py-3 bg-yellow-100 text-orange-500 font-semibold dark:bg-metal-800 dark:text-metal-300 dark:hover:text-metal-25"
-                      >
-                        <FaRegEdit /> edit
-                      </Link>
+          <Table className=" md:w-11/12 mx-auto">
+            <TableHeader>
+              <TableRow>
+                <TableHead>
+                  <div className="max-w-[250px]">service photo </div>
+                </TableHead>
+                <TableHead>
+                  <div className="w-[80px]">service name</div>
+                </TableHead>
+                <TableHead>
+                  <div className="w-[85px]">Price</div>
+                </TableHead>
+                <TableHead>
+                  <div className="w-[90px]">Actions </div>
+                </TableHead>
+                
+              </TableRow>
+            </TableHeader>
+            <TableBody className="dark:bg-metal-800">
+              {resposdatas?.map((item) => (
+                <TableRow key={item._id}>
+                  <TableCell>
+                    <div className="max-w-[250px] truncate">
+                      {" "}
+                      <img
+                        className=" rounded-md w-16  h-16 object-cover object-center "
+                        src={item.Photo_url}
+                        alt=""
+                      />
                     </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })
+                  </TableCell>
+                  <TableCell>{item.Service_Name}</TableCell>
+                  <TableCell>{item.price}</TableCell>
+                  <TableCell className=" space-x-5">
+                    <button
+                      onClick={() => handleDelete(item._id)}
+                      className="bg-red-200 dark:bg-metal-700 p-2 rounded "
+                    >
+                      <MdDeleteForever className="text-lg dark:text-rose-200 text-rose-500" />
+                    </button>
+                    <Link to={`/UpdateService/${item._id}`}>
+                      <button className="bg-yellow-200 dark:bg-metal-700 p-2 rounded ">
+                        <FaRegEdit className="text-lg dark:text-yellow-100 text-orange-500" />
+                      </button>
+                    </Link>
+                  </TableCell>
+                 
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
         )}
       </div>
     </div>
