@@ -29,7 +29,7 @@ function OurServices() {
         <span className=" text-sm dark:text-metal-400 text-orange-500 capitalize">what we do</span> <br />
         Our Services
       </h1>
-      <div className="grid w-3/4 mx-auto grid-cols-1 md:grid-cols-4  gap-4 mt-8">
+      <div className="grid md:w-11/12 lg:w-3/4 mx-auto grid-cols-1 md:grid-cols-4  gap-4 mt-8">
         {services.map((service,index) => (
           <motion.div key={service.title}
           initial={{ y: -50, opacity: 0 }}

@@ -52,18 +52,19 @@ function PopularServices() {
             >
               <Card
                 key={service._id}
-                className={` dark:bg-metal-800 dark:border-metal-800 md:flex md:p-4 my-1 gap-5 items-start md:max-w-[100%] h-full  mx-auto  rounded-md shadow-md`}
+                className={` dark:bg-metal-800 dark:border-metal-800 md:flex justify-center items-start md:p-2 my-1 gap-5  md:max-w-[100%] h-full overflow-hidden mx-auto  rounded-md shadow-md`}
               >
-                <CardHeader className="md:w-[50%]">
+                <CardHeader className=" min-h-44 md:w-[50%] md:h-full">
                   <img
-                    className=" w-full rounded-md"
+                   
+                    className=" w-full h-full object-cover rounded-md"
                     src={service.Photo_url}
                     alt=""
                   />
                 </CardHeader>
 
-                <CardContent className=" md:w-[50%] space-y-5 p-4 flex-col gap-5">
-                  <div className="space-y-2">
+                <CardContent className=" flex md:w-[50%] h-full space-y-5 p-4  flex-col gap-5">
+                  <div className=" flex flex-col h-full space-y-2">
                     <CardTitle className="dark:text-metal-300 capitalize">
                       {service.Service_Name}
                     </CardTitle>
@@ -76,14 +77,14 @@ function PopularServices() {
                       price: $ {service.price}
                     </p>
 
-                    <Link to={`/serviceDetails/${service._id}`}>
+                    <Link className=" grow md:flex md:items-end" to={`/serviceDetails/${service._id}`}>
                       <Button className="bg-blue-500 dark:bg-metal-700 dark:text-gray-300">
                         View Details
                       </Button>
                     </Link>
                   </div>
 
-                  <div className=" flex-col justify-end">
+                  {/* <div className=" flex-col justify-end">
                     <p className=" capitalize py-2 font-semibold text-xl">
                       Service Provider:
                     </p>
@@ -100,7 +101,7 @@ function PopularServices() {
                       </span>
                     </div>
                     
-                  </div>
+                  </div> */}
                 </CardContent>
               </Card>
             </motion.div>

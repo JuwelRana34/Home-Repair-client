@@ -54,7 +54,7 @@ function Services() {
           placeholder="Search"
         />
       </label>
-      <div  className={"flex mb-5 container mx-auto  justify-end"}>
+      <div  className="flex dark:bg-metal-700 bg-slate-100 rounded p-2  mb-5 container mx-auto  justify-end">
        {data.length > 0 && <Select onValueChange={(e) => setSort(e)}>
           <SelectAction className="w-[20rem]">
             <SelectValue placeholder="Sort by price" />

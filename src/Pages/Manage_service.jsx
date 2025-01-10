@@ -88,7 +88,7 @@ function Manage_service() {
         {resposdatas?.length === 0 ? (
           <div>
             {" "}
-            <NotFound text={"You have not booked any service yet !"} />
+            <NotFound text={" you have not added any services yet !"} />
           </div>
         ) : (
           <Table className=" md:w-11/12 mx-auto">

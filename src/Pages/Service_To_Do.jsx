@@ -56,7 +56,7 @@ function Service_To_Do() {
       
 
       {/* table  */}
-      {data?.data?.length === 0 ? <div> <NotFound text={"You have not booked any service yet !"} /></div>  :
+      {data?.data?.length === 0 ? <div> <NotFound text={" no services to do right now !"} /></div>  :
     <Table  >
     <TableHeader  >
       <TableRow >

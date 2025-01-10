@@ -21,7 +21,7 @@ function Newslatter() {
           });
     };
   return (
-    <div style={{backgroundImage:  `linear-gradient(0deg, rgba(0,0,0,0.8), rgba(0,0,0,0.1)),  url(${photo})`}} className=" bg-fuchsia-200 p-4 rounded-md  bg-cover bg-center">
+    <div style={{backgroundImage:  `linear-gradient(0deg, rgba(0,0,0,0.8), rgba(0,0,0,0.1)),  url(${photo})`}} className=" bg-fuchsia-200 p-4 rounded-md mt-8  bg-cover bg-center">
         
         <form onSubmit={handelNewslatter} className="flex backdrop-blur-sm rounded-md bg-white/40  flex-wrap w-full max-w-3xl my-10 mx-auto p-6" >
           <input

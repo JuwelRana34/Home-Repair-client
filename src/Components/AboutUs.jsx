@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 function AboutUs() {
   return (
     <div>
-      <div className="md:flex overflow-hidden pt-12 dark:bg-metal-800 rounded-md  justify-center gap-5 my-5">
+      <div className="md:flex overflow-hidden pt-2 dark:bg-metal-800 rounded-md  justify-center gap-5 my-5">
         <motion.div
          initial={{ x: -100, opacity: 0 }}
          whileInView={{ x: 0, opacity: 1 }}
@@ -21,10 +21,10 @@ function AboutUs() {
          whileInView={{ x: 0, opacity: 1 }}
          transition={{ duration: 0.5, delay: 0.2 }}
          viewport={{ once: true, amount: 0.3 }}
-        className="md:w-[50%] p-4  ">
-          <h1 className=" text-2xl md:text-5xl font-bold space-y-4">
+        className="md:w-[50%] px-4  ">
+          <h1 className=" text-2xl md:text-4xl lg:text-5xl font-bold space-y-4">
             <span className="text-sm text-orange-500 dark:text-metal-400">
-              About Us{" "}
+              About Us
             </span>
             <br />
             25+ YEARS AVERAGE EXPERIENCE

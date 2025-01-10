@@ -22,13 +22,13 @@ function ServiceCard({ service }) {
   } = service;
 
   return (
-    <Card className=" dark:bg-metal-800  my-1 gap-5 items-center   mx-auto  rounded-md shadow-md">
-      <CardHeader className=" min-h-44 min-w-68">
+    <Card className="  flex flex-col dark:bg-metal-800  my-1 gap-2 items-center   mx-auto  rounded-md shadow-md">
+      <CardHeader className="min-w-60  min-h-44 ">
         <img className=" w-full  rounded-md" src={Photo_url} alt={Service_Name} />
       </CardHeader>
 
-      <CardContent className=" space-y-0 p-4 flex-col gap-5">
-        <div className="space-y-2">
+      <CardContent className=" grow  space-y-0 p-4 flex flex-col gap-2">
+        <div className=" space-y-2">
           <CardTitle className=" dark:text-metal-300 capitalize">
             {Service_Name}
           </CardTitle>
@@ -39,7 +39,7 @@ function ServiceCard({ service }) {
             price: $ {price}
           </p>
         </div>
-        <div className=" text-end">
+        <div className=" grow  flex items-end text-end">
           <Link to={`/serviceDetails/${_id}`}>
             <Button className="bg-blue-500 dark:bg-metal-700 dark:text-gray-300">
               View Details

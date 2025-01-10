@@ -57,7 +57,7 @@ function Booked_services() {
           <TableCell>{item.Provider_name}</TableCell>
           <TableCell >
               <span className={`
-               font-semibold
+               font-semibold dark:bg-metal-700 dark:text-metal-300
                 ${item.status === 'pending'? 'text-orange-500 bg-yellow-100 p-2 px-3 rounded-full' : 
                   item.status === 'working'? 'text-green-500 bg-green-100 p-2 px-3 rounded-full' : 
                   item.status === 'completed'? 'text-blue-500 bg-blue-100 p-2 px-3 rounded-full' : 

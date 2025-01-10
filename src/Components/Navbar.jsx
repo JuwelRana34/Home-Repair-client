@@ -1,5 +1,5 @@
 import { Link, NavLink, useLocation, useNavigate } from "react-router";
-import logo from "../assets/mechanic.gif";
+import logo from "../assets/renovation.png";
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../Context/AuthContext";
 import { Button, toast } from "keep-react";
@@ -183,7 +183,7 @@ function Navbar() {
         ) : (
           <>
             <Link to={"/LoginPage"}>
-              <Button className="bg-green-500">Login </Button>
+              <Button className="bg-blue-500">Login </Button>
             </Link>
           </>
         )}

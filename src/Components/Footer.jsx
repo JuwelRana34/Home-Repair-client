@@ -1,19 +1,19 @@
 import { FaFacebook, FaLinkedin } from "react-icons/fa";
 import { IoLogoGithub } from "react-icons/io";
 import { Link } from "react-router";
-import logo from "../assets/mechanic.gif";
+import logo from "../assets/renovation.png";
 import ThemeContext from "../Context/ThemeProvider";
 import { useContext } from "react";
 function Footer() {
   const { theme } = useContext(ThemeContext);
   return (
-    <div className="mt-10">
+    <div className="">
       <footer className="footer container mx-auto text-base-content p-10">
         <nav>
-          <h6 className="footer-title">Services</h6>
-          <a className="link link-hover">Repair Home</a>
-          <a className="link link-hover">Rebuild Home</a>
-          <a className="link link-hover">One Time service</a>
+          <h6 >Services</h6>
+          <h1 >Repair Home</h1>
+          <h1 >Rebuild Home</h1>
+          <h1 >One Time service</h1>
         </nav>
         <nav>
           <h6 className="footer-title">Contact Us</h6>
