@@ -46,7 +46,7 @@ function ContactUs() {
                     name="name"
                     required
                     placeholder="Your Name"
-                    className={`w-full  px-4 py-2 border ${theme === 'dark' ? "bg-slate-600" :'bg-white' }border-gray-300 rounded-md shadow-sm focus:outline-none  focus:ring-2 focus:ring-blue-500 focus:border-blue-500`}
+                    className={`w-full  px-4 py-2 border ${theme === 'dark' ? "bg-slate-600 border-slate-900" :'bg-white' }border-gray-300 rounded-md shadow-sm focus:outline-none  focus:ring-2 focus:ring-blue-500 focus:border-blue-500`}
                   />
                 </div>
 
@@ -63,7 +63,7 @@ function ContactUs() {
                     name="email"
                     required
                     placeholder="Your Email"
-                    className="w-full  px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className={`w-full  px-4 py-2 border ${theme === 'dark' ? "bg-slate-600 border-slate-900" :'bg-white' }border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500`}
                   />
                 </div>
 
@@ -80,14 +80,14 @@ function ContactUs() {
                     rows="4"
                     required
                     placeholder="Your Message"
-                    className="w-full  px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className={`w-full  px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 ${theme === 'dark' ? "bg-slate-600 border-slate-900" :'bg-white' }focus:ring-blue-500 focus:border-blue-500`}
                   ></textarea>
                 </div>
 
                 <div>
                   <button
                     type="submit"
-                    className={`w-full bg-blue-600 text-white font-medium py-2 px-4 rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition ${theme === 'dark' && "text-slate-300 bg-slate-900" }`}
+                    className={`w-full bg-blue-600 text-white font-medium py-2 px-4 rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition ${theme === 'dark' && "text-slate-300 hover:bg-slate-600 bg-slate-900" }`}
                   >
                     Send
                   </button>

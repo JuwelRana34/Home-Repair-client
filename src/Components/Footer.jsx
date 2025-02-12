@@ -8,7 +8,7 @@ function Footer() {
   const { theme } = useContext(ThemeContext);
   return (
     <div className="">
-      <footer className="footer container mx-auto text-base-content p-10">
+      <footer className="footer container mx-auto text-base-content p-5">
         <nav>
           <h6 >Services</h6>
           <h1 >Repair Home</h1>

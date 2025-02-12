@@ -32,7 +32,7 @@ function PopularServices() {
   if (loading) return <Loading />;
   return (
     <>
-      <h1 className="container text-center mx-auto text-3xl font-bold  mt-5 py-4">
+      <h1 className="container text-center mx-auto text-3xl font-bold  mt-3 py-2">
         Popular Services
       </h1>
       <div
@@ -82,7 +82,7 @@ function PopularServices() {
           ))
         )}
       </div>
-      <div className="text-center my-5 ">
+      <div className="text-center my-3 ">
         <Link
           to={"/services"}
           className=" py-2 px-4  bg-blue-500 text-white rounded-md hover:bg-blue-600 dark:hover:bg-metal-800  dark:bg-metal-700 dark:text-gray-300"
