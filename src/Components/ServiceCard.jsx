@@ -24,7 +24,7 @@ function ServiceCard({ service }) {
   return (
     <Card className="  flex flex-col dark:bg-metal-800  my-1 gap-2 items-center   mx-auto  rounded-md shadow-md">
       <CardHeader className="min-w-60  min-h-44 ">
-        <img className=" w-full  rounded-md" src={Photo_url} alt={Service_Name} />
+        <img className=" w-full h-52 object-cover object-center  rounded-md" src={Photo_url} alt={Service_Name} />
       </CardHeader>
 
       <CardContent className=" grow  space-y-0 p-4 flex flex-col gap-2">
