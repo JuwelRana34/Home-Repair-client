@@ -39,7 +39,7 @@ function Slider() {
 
   return (
     <Carousel
-      className=" container mx-auto mt-5 "
+      className=" mt-5 "
       options={{ loop: true }}
       plugins={[autoPlay()]}
     >

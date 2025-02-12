@@ -6,12 +6,14 @@ import Slider from "../Components/Slider";
 
 function Home() {
   return (
-    <div className="container mx-auto">
+    <div>
       <Slider />
+      <div className=" container mx-auto">
       <PopularServices />
       <OurServices />
       <AboutUs/>
       <Newslatter/>
+      </div>
     </div>
   );
 }
