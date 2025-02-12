@@ -29,7 +29,8 @@ function Footer() {
          
         </nav>
       </footer>
-      <footer className="footer  container mx-auto text-base-content border-base-300 border-t px-10 py-4">
+
+      <footer className="footer gap-5 items-center  container mx-auto text-base-content border-base-300 border-t px-10 py-4">
         <aside className="grid-flow-col items-center">
           <img className="w-16 " src={logo} alt="" />
           <p>
@@ -41,7 +42,13 @@ function Footer() {
             Providing Services 2021
           </p>
         </aside>
-        <nav className="md:place-self-center md:justify-self-end">
+        <div className="md:flex justify-between items-center space-y-4 md:space-y-0 w-full">
+        <p className=" justify-center">
+            Copyright © {new Date().getFullYear()} - All right reserved by Home
+            repair Ltd.
+          </p>
+          <nav className="md:place-self-center md:justify-self-end">
+          
           <div className="grid grid-flow-col gap-4">
             <Link to="https://www.facebook.com/juwel34/" target="_blank">
               <FaFacebook
@@ -68,16 +75,10 @@ function Footer() {
               />
             </Link>
           </div>
-        </nav>
-      </footer>
 
-      <footer className="footer border-t container mx-auto footer-center  text-base-content p-4">
-        <aside>
-          <p>
-            Copyright © {new Date().getFullYear()} - All right reserved by Home
-            repair Ltd.
-          </p>
-        </aside>
+
+        </nav>
+        </div>
       </footer>
     </div>
   );
