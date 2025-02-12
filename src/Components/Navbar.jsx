@@ -29,6 +29,7 @@ function Navbar() {
       "/": "Home | Home repair",
       "/loginPage": "Login | Home repair",
       "/signup": "signup | Home repair",
+      "/about": "about | Home repair",
       "/services": "services | Home repair",
       "/service-To-Do": "Service_To_Do | Home repair",
       "/manage-service": "Manage_service | Home repair",
@@ -63,6 +64,11 @@ function Navbar() {
       <NavLink to={"/Contactus"}>
         <li>
           <a>Contact-Us</a>
+        </li>
+      </NavLink>
+      <NavLink to={"/about"}>
+        <li>
+          <a>About-Us</a>
         </li>
       </NavLink>
 
@@ -116,82 +122,80 @@ function Navbar() {
 
   return (
     <div className=" dark:bg-black/45 backdrop-blur bg-white/45 sticky top-0 z-[9999]">
-<div className="navbar container mx-auto py-4">
-      <div className="navbar-start">
-        <div className="dropdown">
-          <div
-            tabIndex={0}
-            role="button"
-            className="btn p-2 btn-ghost lg:hidden"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+      <div className="navbar container mx-auto py-2">
+        <div className="navbar-start">
+          <div className="dropdown">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn p-2 btn-ghost lg:hidden"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
+              </svg>
+            </div>
+            <ul
+              tabIndex={0}
+              className="menu font-semibold menu-sm dropdown-content space-y-2 bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            >
+              {navitems}
+            </ul>
           </div>
-          <ul
-            tabIndex={0}
-            className="menu font-semibold menu-sm dropdown-content space-y-2 bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-          >
+          <Link to={"/"} className="flex items-center">
+            <img
+              src={logo}
+              className=" dark:rounded-lg w-12 md:w-16"
+              alt="Home_repair"
+            />
+
+            <Link
+              to={"/"}
+              className="btn text-blue-600 text-xl btn-ghost p-2 dark:text-metal-300 md:text-3xl font-bold font-berkshire"
+            >
+              Home repair
+            </Link>
+          </Link>
+        </div>
+        <div className="navbar-center hidden lg:flex">
+          <ul className="menu flex items-center space-x-4 font-semibold menu-horizontal px-1">
             {navitems}
           </ul>
         </div>
-        <Link to={"/"} className="flex items-center">
-          <img
-            src={logo}
-            className=" dark:rounded-lg w-12 md:w-16"
-            alt="Home_repair"
-          />
-
-          <Link
-            to={"/"}
-            className="btn text-blue-600 text-xl btn-ghost p-2 dark:text-metal-300 md:text-3xl font-bold font-berkshire"
-          >
-            Home repair
-          </Link>
-        </Link>
-      </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu flex items-center space-x-4 font-semibold menu-horizontal px-1">
-          {navitems}
-        </ul>
-      </div>
-      <div className="navbar-end ">
-        {user ? (
-          <>
-            <div className="flex items-center space-x-2">
-              <img
-                className=" rounded-full h-12  shadow-lg w-12"
-                src={user.photoURL}
-                alt=""
-              />
-              <Button onClick={handleLogout} className="bg-rose-500 px-2 ">
-                LogOut
-              </Button>
-            </div>
-          </>
-        ) : (
-          <>
-            <Link to={"/LoginPage"}>
-              <Button className="bg-blue-500">Login </Button>
-            </Link>
-          </>
-        )}
+        <div className="navbar-end ">
+          {user ? (
+            <>
+              <div className="flex items-center space-x-2">
+                <img
+                  className=" rounded-full h-12  shadow-lg w-12"
+                  src={user.photoURL}
+                  alt=""
+                />
+                <Button onClick={handleLogout} className="bg-rose-500 px-2 ">
+                  LogOut
+                </Button>
+              </div>
+            </>
+          ) : (
+            <>
+              <Link to={"/LoginPage"}>
+                <Button className="bg-blue-500">Login </Button>
+              </Link>
+            </>
+          )}
+        </div>
       </div>
     </div>
-
-    </div>
-    
   );
 }
 
