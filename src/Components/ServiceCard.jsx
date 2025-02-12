@@ -36,7 +36,7 @@ function ServiceCard({ service }) {
 
           <p className=" capitalize py-2 font-semibold text-md">
             {" "}
-            price: $ {price}
+            $ {price}
           </p>
         </div>
         <div className=" grow  flex items-end text-end">

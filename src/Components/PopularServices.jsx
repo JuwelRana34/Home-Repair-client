@@ -65,8 +65,8 @@ function PopularServices() {
           <CardDescription>{service.Description.substring(0, 70)}...</CardDescription>
 
           <p className=" capitalize py-2 font-semibold text-md">
-            {" "}
-            price: $ {service.price}
+            
+            $ {service.price}
           </p>
         </div>
         <div className=" grow  flex items-end text-end">
